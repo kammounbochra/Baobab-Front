@@ -1,11 +1,12 @@
 <div *ngFor="let art of articles ">
-{{art}}
-  <p> {{num}} {{art.date }}</p>
 
-  <p> {{art.ContentDetails.content }}</p>
-  <p> {{art.Author.surname }}</p>
+  <p>  {{art.date }}</p>
+
+
   <p> {{art.status}}</p>
-  <p> {{art.Countries.label}}</p>
-  <p> {{art.Tags.label}}</p>
+
+
+  1: {{art.author.surname }}
+  2: {{art.tags.libelle}}
 </div>
 *********

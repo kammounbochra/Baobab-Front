@@ -35,16 +35,14 @@
 
             <div class="form-group row">
               <!-- Material input -->
-              <label for="pays" class="col-sm-2 col-form-label">Pays </label>
+              <label for="country" class="col-sm-2 col-form-label">Pays </label>
               <div class="col-sm-4">
                 <div class="md-form mt-0">
-                    <select class="browser-default custom-select"name="pays"  #pays name="pays"
-                            id="pays" [(ngModel)]="country">
-                      <option *ngFor="let c of country" [ngValue]="c">{{c.label}}</option>
+                    <select class="browser-default custom-select"name="country"  #country name="country"
+                            id="country" [(ngModel)]="countrys">
+                      <option *ngFor="let c of countrys" [ngValue]="c.id">{{c.name }}</option>
 <!--                      <option> fqdfq</option>-->
-
-                    </select>
-
+                      </select>
                 </div>
               </div>
 

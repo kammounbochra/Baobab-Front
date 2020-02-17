@@ -2,15 +2,20 @@ import { JournalistSignup } from './Journalist-signup';
 import { ContentDetails } from './ContentDetails';
 import {Country} from './Country';
 import {Tags} from './Tags';
+import {Category} from './Category';
+import {ArticleTags} from './Article_tags';
 
 export class Article {
     id: any;
     date: Date;
-    ContentDetails: ContentDetails;
-    Author: JournalistSignup;
+    contentDetails: ContentDetails;
+    author: JournalistSignup;
     link: string;
     status: any;
-    Countries: Country;
-    Tags: Tags;
+    countries: Country;
+  tags: Tags;
+  articletags : ArticleTags;
+  categories : Category ;
+
 
 }

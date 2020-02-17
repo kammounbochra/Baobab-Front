@@ -3,6 +3,7 @@ import {  EventEmitter, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Article} from '../../models/Article';
 import {Country} from '../../models/Country';
+import {CountryService} from '../../services/country.service';
 @Component({
   selector: 'app-redaction',
   templateUrl: './redaction.component.html',
@@ -16,13 +17,22 @@ export class RedactionComponent implements OnInit {
   };
   @Input() art: Article;
   articles: Article[];
-  @Input()countries: Country;
-  country: Country[];
+
+  @Input()country: Country;
+  countrys: Country[];
+  countSelected: Country = {} as Country ;
+
+
   optionsSelect: Array<any>;
 
   f: FormGroup;
 
-  constructor() {}
+
+
+
+
+
+  constructor( private countryService : CountryService) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -37,6 +47,13 @@ export class RedactionComponent implements OnInit {
       { value: 'Feature request', label: 'Feature request' },
       { value: 'Other stuff', label: 'Other stuff' },
     ];
+
+
+    this.countryService.getCountryList().subscribe(da => {
+        console.log(da);
+        this.countrys = da;
+      }
+    );
 
   }
 

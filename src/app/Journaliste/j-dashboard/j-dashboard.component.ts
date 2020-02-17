@@ -22,7 +22,7 @@ export class JDashboardComponent implements OnInit {
     this.articleService.getArticleList().subscribe(dat => {
       this.articles = dat;
       console.log(dat);
-      console.log(this.art.ContentDetails);
+  //    console.log('aaa', this.art.author.id);
     });
 
   }
