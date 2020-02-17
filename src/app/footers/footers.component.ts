@@ -19,6 +19,10 @@ export class FootersComponent implements OnInit , AfterViewInit {
   @Input() jl: JournalistLogin;
   journalistes: Observable<JournalistLogin[]>;
 
+  private username : string;
+  private password : string;
+  private nationality: string;
+  private  numtel : string;
 
   testForm: FormGroup;
   private role: any;
@@ -32,7 +36,9 @@ export class FootersComponent implements OnInit , AfterViewInit {
 
 
   public dataRemote: CompleterData;
-  journalist: JournalistSignup = new JournalistSignup(this.role);
+ // journalist: JournalistSignup = new JournalistSignup(this.role);
+  journalist: JournalistSignup = new JournalistSignup(this.username, this.password, this.nationality, this.numtel, this.role)
+
   @Input() j: JournalistSignup;
   journalistess: Observable<JournalistSignup[]>;
   loading = false;

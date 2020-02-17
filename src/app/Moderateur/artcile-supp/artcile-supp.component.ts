@@ -6,6 +6,7 @@ import {JournalistService} from '../../services/journalist.service';
 import {JournalistSignup} from '../../models/Journalist-signup';
 import {Observable} from 'rxjs';
 import {Angular5Csv} from 'angular5-csv/Angular5-csv';
+import {Article} from '../../models/Article';
 
 @Component({
   selector: 'app-artcile-supp',
@@ -56,6 +57,7 @@ export class ArtcileSuppComponent implements OnInit {
   submitted = false;
   angForm: FormGroup;
   validatingForm: FormGroup;
+ journalistes: Object;
 
   constructor(private journalisteService: JournalistService,
               private fb: FormBuilder , private _router: Router
@@ -63,19 +65,20 @@ export class ArtcileSuppComponent implements OnInit {
   { }
 
   ngOnInit() {
-
+    this.journalisteService.getAll().subscribe(dat => {
+      this.journalistes = dat;
+      console.log(dat); })
     this.createForm();
     this.journalisteService.getAll().subscribe((next: any) => {
       next.forEach((element: any) => {
         this.tableData.push({  id: element.id ,
           name: element.name ,
           surname: element.surname ,
-          datenaiss: element.datenaiss ,
+          dateNaissance: element.dateNaissance ,
           numtel: element.numtel ,
           email: element.email ,
           nationality: element.nationality ,
           motivationtext: element.motivationtext ,
-
         });
       });
     });

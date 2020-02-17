@@ -11,13 +11,15 @@ const httpOptions={
   'providedIn': 'root'
 })
 export class UserService {
-private baseURL='http://localhost:8080/api/auth/'
+private baseURL= 'http://localhost:8080/api/auth/'
   constructor(private http:HttpClient) { }
 
-  signUp(credential:UserRegister):Observable<string>{
+  signUp(credential: UserRegister):Observable<string>{
     return this.http.post<string>(this.baseURL+'signup',credential,httpOptions);
   }
   login(Credential:UserLogin):Observable<JwtResponse>{
-    return this.http.post<JwtResponse>(this.baseURL+'signin',Credential,httpOptions);
+    return this.http.post<JwtResponse>(this.baseURL+ 'signin',Credential,httpOptions);
   }
+
+
 }

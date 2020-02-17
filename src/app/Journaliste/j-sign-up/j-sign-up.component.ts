@@ -47,9 +47,13 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
   testForm: FormGroup;
   submitted = false;
   loading = false;
+  private username : string;
+  private password : string;
+  private nationality: string;
+  private  numtel : string;
 
-
-  journalist: JournalistSignup = new JournalistSignup(this.role);
+  //journalist: JournalistSignup = new JournalistSignup(this.role );
+  journalist: JournalistSignup = new JournalistSignup(this.username, this.password, this.nationality, this.numtel, this.role);
   @Input() j: JournalistSignup;
   journalistes: Observable<JournalistSignup[]>;
 
