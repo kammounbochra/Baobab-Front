@@ -1,0 +1,88 @@
+
+<app-menu-j> </app-menu-j>
+
+<div class="container">
+
+  <hr class="my-5">
+
+  <!-- Magazine newsfeed v.2 -->
+  <div class="row">
+    <div class=" car col-md-12 mx-auto">
+
+      <mdb-card>
+
+        <mdb-card-header class="heavy-rain-gradient white-text text-center py-4">
+          <h5>
+            <strong>Contact us</strong>
+          </h5>
+        </mdb-card-header>
+        <mdb-card-body class="px-lg-5 pt-0">
+
+          <form #f="ngForm">
+
+          <div class="md-form mt-3">
+<!--
+            <input type="text" id="titre" class="form-control"  mdbInput >
+-->
+
+            <input type="text" id="titre" class="form-control" name="titre"   #titre mdbInput>
+
+
+            <label for="titre">Titre</label>
+          </div>
+
+
+
+            <div class="form-group row">
+              <!-- Material input -->
+              <label for="pays" class="col-sm-2 col-form-label">Pays </label>
+              <div class="col-sm-4">
+                <div class="md-form mt-0">
+                    <select class="browser-default custom-select"name="pays"  #pays name="pays"
+                            id="pays" [(ngModel)]="country">
+                      <option *ngFor="let c of country" [ngValue]="c">{{c.label}}</option>
+<!--                      <option> fqdfq</option>-->
+
+                    </select>
+
+                </div>
+              </div>
+
+            <label for="tags" class="col-sm-2 col-form-label">Tags </label>
+            <div class="col-sm-4">
+              <div class="md-form mt-0">
+                    <select class="browser-default custom-select"name="tags"  #tags name="tags"
+                            id="tags">
+                      <option> aaaa</option>
+                      <option> fqdfq</option>
+
+                    </select>
+
+                  </div>
+              </div>
+            </div>
+
+
+
+                    <div id="quill">
+            <h2>Redact article</h2>
+            <quill-editor [(ngModel)]="editorContent"
+                          [(ngModeloptions]="editorOptions" [ngModelOptions]="{standalone: true}"
+                          (blur)="onEditorBlured($event)"
+                          (focus)="onEditorFocused($event)"
+                          (ready)="onEditorCreated($event)"
+                          (change)="onContentChanged($event)"></quill-editor>
+            {{editorContent}}
+          </div>
+
+
+          </form>
+                  </mdb-card-body>
+          </mdb-card>
+              </div>
+            </div>
+            </div>
+
+<div>
+
+</div>

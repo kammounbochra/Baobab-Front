@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <h4 class="text-center">Dark form</h4>
+    <!--Section: Live preview-->
+    <section class="form-dark">
+
+      <!--Form without header-->
+      <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table7.jpg');">
+        <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+
+          <!--Header-->
+          <div class="text-center">
+            <h3 class="white-text mb-5 mt-4 font-weight-bold">
+              <strong>SIGN</strong>
+              <a class="green-text font-weight-bold">
+                <strong> UP</strong>
+              </a>
+            </h3>
+          </div>
+
+          <!--Body-->
+          <form [formGroup]="darkForm">
+
+
+            <div class="md-form">
+              <input type="text" id="darkFormEmailEx" class="form-control white-text" formControlName="darkFormEmailEx" mdbInputDirective>
+              <label for="darkFormEmailEx">Your email</label>
+            </div>
+
+            <div class="md-form pb-3">
+              <input type="password" id="darkFormPasswordEx" class="form-control white-text" formControlName="darkFormPasswordEx" mdbInputDirective>
+              <label for="darkFormPasswordEx">Your password</label>
+              <div class="form-check my-4">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck17">
+                <label class="form-check-label white-text" for="defaultCheck17">Accept the
+                  <a href="#" class="green-text font-weight-bold"> Terms and Conditions</a>
+                </label>
+              </div>
+            </div>
+          </form>
+
+          <!--Grid row-->
+          <div class="row d-flex align-items-center mb-4">
+
+            <!--Grid column-->
+            <div class="text-center mb-3 col-md-12">
+              <button type="button" mdbBtn color="success" block="true" rounded="true" class="z-depth-1 waves-light" mdbWavesEffect>Sign in</button>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+
+          <!--Grid column-->
+          <div class="col-md-12">
+            <p class="font-small white-text d-flex justify-content-end">Have an account?
+              <a href="#" class="green-text ml-1 font-weight-bold"> Log in</a>
+            </p>
+          </div>
+          <!--Grid column-->
+
+        </div>
+      </div>
+      <!--/Form without header-->
+
+    </section>
+    <!--Section: Live preview-->
+  </div>
+</div>

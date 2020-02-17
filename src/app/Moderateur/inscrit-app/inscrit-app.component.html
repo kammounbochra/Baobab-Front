@@ -1,0 +1,217 @@
+<app-menu-mod>  </app-menu-mod>
+
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+
+    </div>
+  </div>
+
+  &lt;!&ndash; Basic example &ndash;&gt;
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+
+      &lt;!&ndash; Editable table &ndash;&gt;
+      <div class="card">
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
+        <div class="card-body">
+          <div id="table" class="table-editable">
+            <span class="table-add float-right mb-3 mr-2">
+              <a class="text-success" (click)="add()"> <i class="fa fa-plus left">
+               </i>
+              </a>
+            </span>
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+              <tr>
+                <th class="text-center">Person Name</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Company Name</th>
+                <th class="text-center">Country</th>
+                <th class="text-center">City</th>
+                <th class="text-center">Sort</th>
+                <th class="text-center">Remove</th>
+              </tr>
+              <tr *ngFor="let person of personList; let id = index">
+                <td contenteditable="true" (keyup)="changeValue(id, 'name', $event)">{{person.name}}</td>
+                <td contenteditable="true" (keyup)="changeValue(id, 'age', $event)">{{person.age}}</td>
+                <td contenteditable="true" (keyup)="changeValue(id, 'companyName', $event)">{{person.companyName}}</td>
+                <td contenteditable="true" (keyup)="changeValue(id, 'country', $event)">{{person.country}}</td>
+                <td contenteditable="true" (keyup)="changeValue(id, 'city', $event)">{{person.city}}</td>
+                <td>
+                  <span class="table-up">
+                    <a class="indigo-text">
+                      <i class="fa fa-sort left "></i>
+                    </a>
+                  </span>
+                  <span class="table-down">
+                    <a class="indigo-text">
+                      <mdb-icon icon="long-arrow-down"></mdb-icon>
+                    </a>
+                  </span>
+                </td>
+                <td>
+                  <span class="table-remove">
+                    <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      &lt;!&ndash; Editable table &ndash;&gt;
+    </div>
+  </div>
+  &lt;!&ndash; Basic example &ndash;&gt;
+
+  <hr class="my-5">
+</div>
+-->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+
+    </div>
+  </div>
+
+  <!-- Basic example -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="md-form">
+        <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
+               mdbInput>
+        <label for="search-input">Search</label>
+      </div>
+    </div>
+    <div class="table table-responsive-md  text-center">
+      <table class="table table-hover table-responsive-md mb-0  table-striped "  cellspacing="0" width="100%">      <thead class="sticky-top">
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements" [sortBy]="headElements[i]"
+            scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
+
+        </th>
+      </tr>
+      </thead>
+      <tbody #row>
+<!--
+      (rowCreated)="onRowCreate($event)" (rowRemoved)="onRowRemove($event)"
+-->
+      <tr #list  *ngFor="let data of elements; let i = index">
+
+  <!-- <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.id}}</th>-->
+  <!--
+                  <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.id}}</th>
+  -->
+  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex  && i < mdbTablePagination.lastItemIndex">{{data.name}} </td>
+  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{data.surname}} </td>
+  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex  && i < mdbTablePagination.lastItemIndex">{{data.username}} </td>
+  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex  && i < mdbTablePagination.lastItemIndex">{{data.datenaiss}} </td>
+  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex   && i < mdbTablePagination.lastItemIndex">{{data.nationality}} </td>
+  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex   && i < mdbTablePagination.lastItemIndex">{{data.email}} </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"> <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="removeRow()">Accept</button>
+          <button
+            type="button"
+            mdbBtn
+            color="default"
+            rounded="true"
+            size="sm" class="my-0"
+            data-toggle="modal"
+            data-target="#basicExample"
+            (click)="frame.show()"
+            mdbWavesEffect>Détails    </button>
+        </td>
+
+      </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-200">
+      <tr>
+        <td colspan="6">
+          <mdb-table-pagination [tableEl]="tableEl" paginationAlign="" [searchDataSource]="elements"></mdb-table-pagination>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+  </p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+  </p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+  </p>
+
+
+
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-success" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead">Journaliste</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="text-center">
+          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+            in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+            in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
+            in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+          </p>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect>Get it now
+          <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
+        </a>
+        <a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">No, thanks</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

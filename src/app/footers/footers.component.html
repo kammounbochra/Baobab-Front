@@ -1,0 +1,479 @@
+<!-- Footer -->
+<footer class="page-footer  font-small special-color-dark pt-4">
+
+  <!-- Footer Elements -->
+  <div class="container">
+    <div class="form-group">
+    <!-- Social buttons -->
+    <ul class="list-unstyled list-inline text-center">
+      <li class="list-inline-item">
+        <a class="btn-floating btn-fb mx-1">
+          <i class="fab fa-facebook-f"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-tw mx-1">
+          <i class="fab fa-twitter"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-gplus mx-1">
+          <i class="fab fa-google-plus-g"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-li mx-1">
+          <i class="fab fa-linkedin-in"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-dribbble mx-1">
+          <i class="fab fa-dribbble"> </i>
+        </a>
+      </li>
+ <li> </li>
+      <li class="list-inline-item">
+        <h5 class="mb-1">Register for free</h5>
+      </li>
+
+      <li class="list-inline-item">
+        <a routerLink="/j_sign_up"  class="btn btn-outline-white btn-rounded">Sign up!</a>
+        <a routerLink="/j_login"  class="btn btn-outline-white btn-rounded">Login</a>
+        <a routerLink="/m_login"  class="btn btn-outline-white btn-rounded">Modérateur!</a>
+        <button
+          type="button"
+          mdbBtn
+          color="default"
+          rounded="true"
+          data-toggle="modal"
+          data-target="#basicExample"
+          (click)="frame.show()"
+          mdbWavesEffect
+        >
+          Log 2
+        </button>
+      </li>
+    </ul>
+    </div>
+<!--<div class="form-group">
+      &lt;!&ndash; Call to action &ndash;&gt;
+      <ul class="list-unstyled list-inline text-center py-2">
+        <li class="list-inline-item">
+          <h5 class="mb-1">Register for free</h5>
+        </li>
+        <li class="list-inline-item">
+          <a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>
+        </li>
+      </ul>
+      &lt;!&ndash; Call to action &ndash;&gt;
+
+</div>-->
+    <!-- Social buttons -->
+
+  </div>
+  <!-- Footer Elements -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/"> Baobab</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+
+
+<div
+  mdbModal
+  #frame="mdbModal"
+  class="modal fade top"
+  id="frameModalTop"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+        <!-- Tab panels -->
+        <mdb-tabset
+          #staticTabs
+          [buttonClass]="'nav md-tabs  tabs-2 light-blue darken-3'"
+          [contentClass]="''"
+          class="tab-content">
+          <!--Panel 7-->
+          <mdb-tab
+            class="tab-pane fade in show active"
+            id="panel7"
+            role="tabpanel"
+            heading="<i class='fas fa-user'></i> Login"
+          >
+            <!--Body-->
+            <div class="modal-body mb-1">
+              <form [formGroup]="testlog"  (ngSubmit)="onSubmit()">
+                <div class="md-form form-sm">
+                  <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
+
+                  <input  type="text" class="form-control"  formControlName="username" placeholder="Username" [(ngModel)]="journaliste.username"
+                          id="username"  [ngClass]="{ 'is-invalid': submitted && fl.username.errors }" />
+                  <div *ngIf="submitted && fl.username.errors" class="invalid-feedback">
+                    <div *ngIf="fl.username.errors.required">Username is required</div>
+                    <div *ngIf="fl.username.errors.email">username </div>
+                  </div>
+
+
+                </div>
+
+                <div class="md-form form-sm">
+                  <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+                  <input  type="text" class="form-control"  formControlName="password" placeholder="Password"      [(ngModel)]="journaliste.password"
+                          id="password"  [ngClass]="{ 'is-invalid': submitted && fl.password.errors }" />
+                  <div *ngIf="submitted && fl.password.errors" class="invalid-feedback">
+                    <div *ngIf="fl.password.errors.required">Password is required</div>
+                    <div *ngIf="fl.password.errors.minlength">Password incorrect</div>
+                  </div>
+
+                </div>
+
+              </form>
+              <div class="text-center mt-2">
+                <button mdbBtn color="info" class="waves-light" mdbWavesEffect>
+                  Log in
+                  <mdb-icon fas icon="sign-in-alt" class="ml-1"></mdb-icon>
+                </button>
+              </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer display-footer">
+              <div class="options text-center text-md-right mt-1">
+                <p>
+                  Not a member?
+                  <a href="#" class="blue-text">Sign Up</a>
+                </p>
+                <p>
+                  Forgot
+                  <a href="#" class="blue-text">Password?</a>
+                </p>
+              </div>
+              <button
+                type="button"
+                mdbBtn
+                color="info"
+                outline="true"
+                class="ml-auto"
+                data-dismiss="modal"
+                (click)="frame.hide()"
+                mdbWavesEffect
+              >
+                Close
+              </button>
+            </div>
+          </mdb-tab>
+          <!--/.Panel 7-->
+
+          <!--Panel 8-->
+
+          <mdb-tab
+            class="tab-pane fade"
+            id="panel8"
+            role="tabpanel"
+            heading="<i class='fas fa-user-plus'></i> Register"
+          >
+            <!--Body-->
+           <div class="modal-body">
+             <form [formGroup]="testForm"  (ngSubmit)="onSubmit()">
+
+                  <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6">
+                      <div class="md-form mb-0">
+                        <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
+                        <input   type="text" class="form-control"  formControlName="name" placeholder="Nom"  [(ngModel)]="journalist.name"
+                                 id="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                          <div *ngIf="f.name.errors.required">Name is required</div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-md-6">
+                      <div class="md-form mb-0">
+                        <input  type="text" class="form-control"  formControlName="surname" placeholder="Prenom" [(ngModel)]="journalist.surname"
+                                id="surname"   [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
+
+                        <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+                          <div *ngIf="f.surname.errors.required">Surname is required</div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+               <div class="row">
+
+                 <!-- Grid column -->
+
+                 <div class="col-md-6">
+                   <div class="md-form mb-0">
+                     <input  type="text" class="form-control"  formControlName="username" placeholder="User Name"  [(ngModel)]="journalist.username"
+                             id="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                       <div *ngIf="f.username.errors.required">Username is required</div>
+                     </div>
+                   </div>
+                 </div>
+
+
+                 <div class="col-md-6">
+                   <div class="md-form mb-0">
+                     <input  type="email" class="form-control"  formControlName="email" placeholder="Email" [(ngModel)]="journalist.email"
+                             id="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                       <div *ngIf="f.email.errors.required">Email is required</div>
+                       <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                     </div>
+
+                   </div>
+                 </div>
+               </div>
+
+
+               <div class="row">
+
+                 <div class="col-md-6">
+                   <div class="md-form mb-0">
+                     <input  type="text" class="form-control"  formControlName="password" placeholder="password"      [(ngModel)]="journalist.password"
+                             id="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                       <div *ngIf="f.password.errors.required">Password is required</div>
+                       <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                     </div>
+                   </div>
+                 </div>
+
+
+                 <div class="col-md-6">
+                   <div class="md-form mb-0">
+                     <input  type="text" class="form-control"  formControlName="confirm_password" placeholder="Repeat password"
+                             id="confirm_password"  name="confirm_password" required minlength="8" >
+
+                   </div>
+                 </div>
+
+               </div>
+
+
+               <div class="row">
+
+                 <div class="col-md-6">
+                   <div class="md-form mb-0">
+                     <mdb-date-picker formControlName="datenaiss" #datenaiss [options]="myDatePickerOptions" [placeholder]="'Date Naissance'" [locale]="'de'" [(ngModel)]="journalist.datenaiss" required></mdb-date-picker>
+                   </div>
+                 </div>
+
+                 <div class="col-md-6">
+                   <div class="md-form mb-0">
+                     <input type="text" class="form-control"  formControlName="numtel" placeholder="Your Phone" [(ngModel)]="journalist.numtel"
+                            id="numtel" [ngClass]="{ 'is-invalid': submitted && f.numtel.errors }" />
+                     <div *ngIf="submitted && f.numtel.errors" class="invalid-feedback">
+                       <div *ngIf="f.numtel.errors.required">Phone number is required</div>
+
+                     </div>
+
+                   </div>
+                 </div>
+
+               </div>
+
+               <div class="row">
+
+
+                 <div class="col-md-6">
+                   <div class="md-form mb-0">
+                     <mdb-completer mdbActive mdbInputValidate [label]="'Nationality'" name="nationality"   formControlName="nationality"
+                                    [datasource]="dataRemote" [(ngModel)]="journalist.nationality"
+                                    [minSearchLength]="0" inputClass="form-control"></mdb-completer>
+                   </div>
+                 </div>
+
+
+
+
+
+
+               </div>
+
+
+
+
+               <div class="row">
+
+                 <div class="col-md-6">
+                   <div class="md-form mb-0">
+                     <input   type="text" class="form-control"  formControlName="actualEntreprise" placeholder="Actual Entreprise"
+                              [(ngModel)]="journalist.actualEntreprise"
+                              id="actualEntreprise"   [ngClass]="{ 'is-invalid': submitted && f.actualEntreprise.errors }" />
+                     <div *ngIf="submitted && f.actualEntreprise.errors" class="invalid-feedback">
+                       <div *ngIf="f.actualEntreprise.errors.required">Actual Entreprise is required</div>
+                     </div>
+
+                   </div>
+                 </div>
+
+                 <div class="col-md-6">
+                   <div class="md-form mb-0">
+                     <input mdbValidate  mdbInputDirective    type="number" class="form-control"  formControlName="experience" placeholder="Expérience"
+                            [(ngModel)]="journalist.experience"  id="experience"  [ngClass]="{ 'is-invalid': submitted && f.experience.errors }" />
+                     <div *ngIf="submitted && f.experience.errors" class="invalid-feedback">
+                       <div *ngIf="f.experience.errors.required">Experience is required</div>
+                     </div>
+
+                   </div>
+                 </div>
+
+
+
+               </div>
+
+               <div class="row">
+
+                 <!-- Grid column -->
+
+                 <!-- Grid column -->
+
+               </div>
+               <!-- Grid row -->
+
+
+               <!-- Grid row -->
+               <div class="row">
+
+                 <div class="col-md-10">
+                   <div class="md-form mb-0">
+                <textarea type="text" id="form-contact-message" formControlName="motivationtext"  id="motivationtext" class="form-control md-textarea"  [(ngModel)]="journalist.motivationtext"
+                          [ngClass]="{ 'is-invalid': submitted && f.motivationtext.errors }" > </textarea>
+
+                     <div *ngIf="submitted && f.motivationtext.errors" class="invalid-feedback">
+                       <div *ngIf="f.motivationtext.errors.required">Motivation text is required</div>
+
+                     </div>
+                     <label for="form-contact-message">Your message</label>
+
+                     <button class="btn btn-primary  btn-floating" [disabled]="loading"   (click)="signup(); testForm.reset()"><mdb-icon fas icon="paper-plane"> </mdb-icon></button>
+
+                   </div>
+                 </div>
+
+
+
+               </div>
+
+
+
+
+<!--
+                <div class="md-form form-sm">
+                  <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+                  <input
+                    mdbInput
+                    mdbValidate
+                    type="password"
+                    id="form25"
+                    class="form-control"
+                    formControlName="modalFormRegisterPassword"
+                  />
+                  <label for="form25">Your password</label>
+                  <mdb-error
+                    *ngIf="
+                      modalFormRegisterPassword.invalid &&
+                      (modalFormRegisterPassword.dirty || modalFormRegisterPassword.touched)
+                    "
+                  >
+                    Input invalid
+                  </mdb-error>
+                  <mdb-success
+                    *ngIf="
+                      modalFormRegisterPassword.valid &&
+                      (modalFormRegisterPassword.dirty || modalFormRegisterPassword.touched)
+                    "
+                  >
+                    Input valid
+                  </mdb-success>
+                </div>
+
+                <div class="md-form form-sm">
+                  <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+                  <input
+                    mdbInput
+                    mdbValidate
+                    type="password"
+                    id="form26"
+                    class="form-control"
+                    formControlName="modalFormRegisterRepeatPassword"
+                  />
+                  <label for="form26">Repeat password</label>
+                  <mdb-error
+                    *ngIf="
+                      modalFormRegisterRepeatPassword.invalid &&
+                      (modalFormRegisterRepeatPassword.dirty ||
+                        modalFormRegisterRepeatPassword.touched)
+                    "
+                  >
+                    Input invalid
+                  </mdb-error>
+                  <mdb-success
+                    *ngIf="
+                      modalFormRegisterRepeatPassword.valid &&
+                      (modalFormRegisterRepeatPassword.dirty ||
+                        modalFormRegisterRepeatPassword.touched)
+                    "
+                  >
+                    Input valid
+                  </mdb-success>
+                </div>-->
+
+                <div class="text-center form-sm mt-2">
+                  <button mdbBtn color="info" class="waves-light" mdbWavesEffect>
+                    Sign up
+                    <mdb-icon fas icon="sign-in-alt" class="ml-1"></mdb-icon>
+                  </button>
+                </div>
+              </form>
+            </div>-->
+            <!--Footer-->
+            <div class="modal-footer">
+              <div class="options text-right">
+                <p class="pt-1">
+                  Already have an account?
+                  <a class="blue-text">Log In</a>
+                </p>
+              </div>
+              <button
+                type="button"
+                mdbBtn
+                color="info"
+                outline="true"
+                class="ml-auto"
+                data-dismiss="modal"
+                (click)="frame.hide()"
+                mdbWavesEffect
+              >
+                Close
+              </button>
+            </div>
+          </mdb-tab>
+          <!--/.Panel 8-->
+        </mdb-tabset>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
