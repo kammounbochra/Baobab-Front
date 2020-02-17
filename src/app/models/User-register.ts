@@ -4,12 +4,12 @@ username: string;
 email: string;
 role: string[];
 password: string;
-datenaiss: Date;
-  numtel: string;
+  dateNaissance: Date;
+  numtel: number;
 nationality: string;
 
 
-constructor(username: string, email: string, password: string, nationality: string , numtel: string) {
+constructor(username: string, email: string, password: string, nationality: string , numtel: number) {
     this.username = username;
     this.email = email;
     this.password = password;

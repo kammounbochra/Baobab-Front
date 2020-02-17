@@ -6,18 +6,20 @@ export class JournalistSignup extends UserRegister {
     id: number;
   name: string;
   surname: string;
-    username: any;
-  //  email: any;
+ //   username: any;
+    email: any;
   role: string[] ;
 
 //   role: string;
   //  password: string;
+  entrepriseActuelle : any;
     actualEntreprise: any;
- //   nationality: string;
-    experience: number;
+   nationality: string;
+    experience: any;
   dateNaissance: any ;
- // numtel: string;
+  numtel: number;
   motivationtext: any;
+  status : any;
   cv: File;
   portefolio: File;
 /*
@@ -26,7 +28,7 @@ export class JournalistSignup extends UserRegister {
     }*/
 
 
-  constructor(username: string, email: string, password: string, nationality: string, numtel: string) {
+  constructor(username: string, email: string, password: string, nationality: string, numtel: number) {
     super(username, email, password, nationality, numtel);
     this.role = this.role;
   }
