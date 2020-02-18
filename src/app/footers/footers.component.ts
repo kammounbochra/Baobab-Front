@@ -23,7 +23,7 @@ export class FootersComponent implements OnInit , AfterViewInit {
   private password : string;
   private nationality: string;
   private  numtel : string;
-
+  private  dateNaissance: Date;
   testForm: FormGroup;
   private role: any;
   model: any;
@@ -37,7 +37,7 @@ export class FootersComponent implements OnInit , AfterViewInit {
 
   public dataRemote: CompleterData;
  // journalist: JournalistSignup = new JournalistSignup(this.role);
-  journalist: JournalistSignup = new JournalistSignup(this.username, this.password, this.nationality, this.numtel, this.role)
+  journalist: JournalistSignup = new JournalistSignup(this.username, this.password, this.nationality, this.numtel , this.role , this.dateNaissance)
 
   @Input() j: JournalistSignup;
   journalistess: Observable<JournalistSignup[]>;
@@ -118,7 +118,7 @@ export class FootersComponent implements OnInit , AfterViewInit {
   get f() {
     return this.testForm.controls;
   }
-  signup() {  if (this.testForm.valid) { this.journalistService.signUp(this.journalist).subscribe( data => {  console.log('aaaaa', data);
+  signup() {  if (this.testForm.valid) { this.journalistService.signUpJ(this.journalist).subscribe( data => {  console.log('aaaaa', data);
     this.journalist = data as JournalistSignup;
     this.showInfo();
   });

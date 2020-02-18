@@ -12,7 +12,7 @@ const httpOptions={
 })
 export class UserService {
 private baseURL= 'http://localhost:8080/api/auth/'
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   signUp(credential: UserRegister):Observable<string>{
     return this.http.post<string>(this.baseURL+'signup',credential,httpOptions);

@@ -1,6 +1,20 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {MdbTableDirective, MdbTablePaginationComponent} from 'ng-uikit-pro-standard';
 import {JournalistService} from '../../services/journalist.service';
+import {Http} from '@angular/http';
+import {Angular5Csv} from 'angular5-csv/Angular5-csv';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-inscrit-app',
@@ -8,72 +22,164 @@ import {JournalistService} from '../../services/journalist.service';
   styleUrls: ['./inscrit-app.component.scss']
 })
 export class InscritAppComponent implements OnInit , AfterViewInit {
-  @ViewChild(MdbTableDirective) mdbTable: MdbTableDirective;
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    useBom: true,
+    headers: ['Post ID', 'Post title', 'Post body']
+  };
+
+
+
+  @ViewChildren('list') list: QueryList<ElementRef>;
+  @ViewChildren('pages') pages: QueryList<any>;
   @ViewChild(MdbTablePaginationComponent) mdbTablePagination: MdbTablePaginationComponent;
-  @ViewChild('row') row: ElementRef;
+  @ViewChild(MdbTableDirective) mdbTable: MdbTableDirective;
 
-  elements: any = [];
-  headElements = ['id', 'Name', 'Surname', 'Username', 'Email', 'Date Naissance', 'Nationality' , 'Actions'];
 
-  searchText;
-  previous: string;
-
-  maxVisibleItems  = 8;
-
+  paginators: Array<any> = [];
+  activePage = 1;
+  firstVisibleIndex = 1;
+  lastVisibleIndex = 10;
+  url: any = 'https://jsonplaceholder.typicode.com/posts';
   tableData: Array<any> = [];
+  sorted = false;
+  searchText: string;
+  firstPageNumber = 1;
+  lastPageNumber: number;
+  maxVisibleItems = 10;
+  elements: any = [];
+  validatingForm: FormGroup;
+  journalistes: Object;
+  private editField: string;
 
-  ////
-  editField: string;
-  personList: Array<any> = [
-    { id: 1, name: 'Aurelia Vega', age: 30, companyName: 'Deepends', country: 'Spain', city: 'Madrid' },
-    { id: 2, name: 'Guerra Cortez', age: 45, companyName: 'Insectus', country: 'USA', city: 'San Francisco' },
-    { id: 3, name: 'Guadalupe House', age: 26, companyName: 'Isotronic', country: 'Germany', city: 'Frankfurt am Main' },
-    { id: 4, name: 'Aurelia Vega', age: 30, companyName: 'Deepends', country: 'Spain', city: 'Madrid' },
-    { id: 5, name: 'Elisa Gallagher', age: 31, companyName: 'Portica', country: 'United Kingdom', city: 'London' },
-  ];
 
-  awaitingPersonList: Array<any> = [
-    { id: 6, name: 'George Vega', age: 28, companyName: 'Classical', country: 'Russia', city: 'Moscow' },
-    { id: 7, name: 'Mike Low', age: 22, companyName: 'Lou', country: 'USA', city: 'Los Angeles' },
-    { id: 8, name: 'John Derp', age: 36, companyName: 'Derping', country: 'USA', city: 'Chicago' },
-    { id: 9, name: 'Anastasia John', age: 21, companyName: 'Ajo', country: 'Brazil', city: 'Rio' },
-    { id: 10, name: 'John Maklowicz', age: 36, companyName: 'Mako', country: 'Poland', city: 'Bialystok' },
-  ];
-  constructor(private cdRef: ChangeDetectorRef, private journalisteService: JournalistService) {}
 
-  @HostListener('input') oninput() {
-    this.mdbTablePagination.searchText = this.searchText;
-  }
+
+  constructor(private journalisteService: JournalistService,
+              private fb: FormBuilder , private _router: Router) { }
+
+
 
   ngOnInit() {
-  /*  for (let i = 1; i <= 25; i++) {
-      this.elements.push({id: i.toString(), first: 'Wpis ' + i, last: 'Last ' + i, handle: 'Handle ' + i});
-    }*/
-    //this.createForm();
-    this.journalisteService.getAll().subscribe((next: any) => {
-      next.forEach((element: any) => {
-        this.tableData.push({  id: element.id, name: element.name ,
-          surname: element.surname ,
-          username: element.username ,
-          datenaiss: element.datenaiss ,
-          nationality: element.nationality ,
-          email: element.email ,
-          motivationtext: element.motivationtext ,
+/*    this.getData().subscribe((next: any) => {
+      next.json().forEach((element: any) => {
+        this.tableData.push({ id: (element.id).toString(), title: element.title, body: element.body });
+      });*/
 
+
+      this.journalisteService.getAll().subscribe((next: any) => {
+        next.forEach((element: any) => {
+          this.tableData.push({  id: element.id ,
+            name: element.name ,
+            surname: element.surname ,
+            dateNaissance: element.dateNaissance ,
+            numtel: element.numtel ,
+            email: element.email ,
+            nationality: element.nationality ,
+            motivationtext: element.motivationtext ,
+          });
         });
       });
-    });
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
+
+    setTimeout(() => {
+      for (let i = 1; i <= this.tableData.length; i++) {
+        if (i % this.maxVisibleItems === 0) {
+          this.paginators.push(i / this.maxVisibleItems);
+        }
+      }
+      if (this.tableData.length % this.paginators.length !== 0) {
+        this.paginators.push(this.paginators.length + 1);
+      }
+      this.lastPageNumber = this.paginators.length;
+      this.lastVisibleIndex = this.maxVisibleItems;
+    }, 200);
+
   }
 
-  ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(this.maxVisibleItems);
+  @HostListener('input') oninput() {
+    this.paginators = [];
+    for (let i = 1; i <= this.search().length; i++) {
+      if (!(this.paginators.indexOf(Math.ceil(i / this.maxVisibleItems)) !== -1)) {
+        this.paginators.push(Math.ceil(i / this.maxVisibleItems));
+      }
+    }
+    this.lastPageNumber = this.paginators.length;
+  }
+  changePage(event: any) {
+    if (event.target.text >= 1 && event.target.text <= this.maxVisibleItems) {
+      this.activePage = +event.target.text;
+      this.firstVisibleIndex = this.activePage * this.maxVisibleItems - this.maxVisibleItems + 1;
+      this.lastVisibleIndex = this.activePage * this.maxVisibleItems;
+    }
+  }
 
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-    this.cdRef.detectChanges();
+  nextPage() {
+    this.activePage += 1;
+    this.firstVisibleIndex = this.activePage * this.maxVisibleItems - this.maxVisibleItems + 1;
+    this.lastVisibleIndex = this.activePage * this.maxVisibleItems;
+  }
+  previousPage() {
+    this.activePage -= 1;
+    this.firstVisibleIndex = this.activePage * this.maxVisibleItems - this.maxVisibleItems + 1;
+    this.lastVisibleIndex = this.activePage * this.maxVisibleItems;
+  }
+
+  firstPage() {
+    this.activePage = 1;
+    this.firstVisibleIndex = this.activePage * this.maxVisibleItems - this.maxVisibleItems + 1;
+    this.lastVisibleIndex = this.activePage * this.maxVisibleItems;
+  }
+
+  lastPage() {
+    this.activePage = this.lastPageNumber;
+    this.firstVisibleIndex = this.activePage * this.maxVisibleItems - this.maxVisibleItems + 1;
+    this.lastVisibleIndex = this.activePage * this.maxVisibleItems;
+  }
+
+  sortBy(by: string | any): void {
+    if (by === 'id') {
+      this.search().reverse();
+    } else {
+      this.search().sort((a: any, b: any) => {
+        if (a[by] < b[by]) {
+          return this.sorted ? 1 : -1;
+        }
+        if (a[by] > b[by]) {
+          return this.sorted ? -1 : 1;
+        }
+        return 0;
+      });
+    }
+    this.sorted = !this.sorted;
+  }
+
+  filterIt(arr: any, searchKey: any) {
+    return arr.filter((obj: any) => {
+      return Object.keys(obj).some((key) => {
+        return obj[key].includes(searchKey);
+      });
+    });
+  }
+
+  search() {
+    if (!this.searchText) {
+      return this.tableData;
+    }
+    if (this.searchText) {
+      return this.filterIt(this.tableData, this.searchText);
+    }
+  }
+
+  ngAfterViewInit(): void {
+  }
+  remove(id: any) {
+    this.tableData.push(this.tableData[id]);
+    this.tableData.splice(id, 1);
+  //  this.journalisteService.delete
   }
 
   addNewRow() {
@@ -113,54 +219,26 @@ export class InscritAppComponent implements OnInit , AfterViewInit {
     });
   }
 
+
   emitDataSourceChange() {
     this.mdbTable.dataSourceChange().subscribe((data: any) => {
       console.log(data);
     });
   }
 
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
-
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.elements = this.mdbTable.getDataSource();
-    }
-
-    if (this.searchText) {
-      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
-      this.mdbTable.setDataSource(prev);
-    }
-
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-
-    this.mdbTable.searchDataObservable(this.searchText).subscribe(() => {
-      this.mdbTablePagination.calculateFirstItemIndex();
-      this.mdbTablePagination.calculateLastItemIndex();
-    });
-  }
-
-
-  updateList(id: number, property: string, event: any) {
-    const editField = event.target.textContent;
-    this.personList[id][property] = editField;
-  }
-
-  remove(id: any) {
-    this.awaitingPersonList.push(this.personList[id]);
-    this.personList.splice(id, 1);
-  }
 
   add() {
-    if (this.awaitingPersonList.length > 0) {
-      const person = this.awaitingPersonList[0];
-      this.personList.push(person);
-      this.awaitingPersonList.splice(0, 1);
+    if (this.tableData.length > 0) {
+      const person = this.tableData[0];
+      this.tableData.push(person);
+      this.tableData.splice(0, 1);
     }
   }
 
   changeValue(id: number, property: string, event: any) {
     this.editField = event.target.textContent;
+    this.tableData[id][property] = this.editField;
   }
+
+
 }

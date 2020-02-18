@@ -18,18 +18,24 @@
   </tr>
   </thead>
   <tbody>
-  <tr mdbTableCol *ngFor="let el of journalistes">
-    <th scope="row">{{el.idUser}}</th>
+  <tr mdbTableCol *ngFor="let el of journalists ">
+
+
+    <th scope="row">{{el.idUser}}  </th>
     <td>1{{el.username}}</td>
-    <td>2</td>
+<!--
+    <td [(ngModel)]="journalists.idUser" >2 {{var el = el;el}}</td>
+-->
     <td>3{{el.status }}</td>
-    <td>4{{el.entrepriseActuelle}}</td>
+
+    <td >4{{el.entrepriseActuelle}}</td>
     <td>5{{el.motivationtext}}</td>
     <td>8{{el.numtel}}</td>
     <td>6{{el.experience}}</td>
     <td>7{{el.dateNaissance}}</td>
     <td>8{{el.name}}</td>
-    <td>9{{el.email}}</td>
+    <td>9{{el.surname}}</td>
+    <td>10{{el.role}}</td>
 
   </tr>
   </tbody>

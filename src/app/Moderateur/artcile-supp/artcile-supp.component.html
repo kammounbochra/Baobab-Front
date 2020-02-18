@@ -25,10 +25,10 @@
           <!--/Card image-->
           <div class="row  d-flex align-items-center justify-content-center">
             <div class="col-md-6 mx-auto">
-              <div class="md-form">
+              <!--<div class="md-form">
                 <input type="search" [(ngModel)]="searchText" id="search" class="form-control" mdbInputDirective [mdbValidate]="false">
                 <label for="search">Search data</label>
-              </div>
+              </div>-->
             </div>
             <div class="col-md-6 mx-auto">
 
@@ -61,11 +61,12 @@
                 <mdb-icon icon="sort" (click)="sortBy('dateNaissance')"></mdb-icon>
               </th>
 
-              <th>Email
-                <mdb-icon icon="sort" (click)="sortBy('email')"></mdb-icon>
-              </th>
+
              <th>Numéro
                <mdb-icon icon="sort" (click)="sortBy('numtel')"></mdb-icon>
+             </th>
+             <th>Email
+               <mdb-icon icon="sort" (click)="sortBy('email')"></mdb-icon>
              </th>
               <th>Nationality
                 <mdb-icon icon="sort" (click)="sortBy('nationality')"></mdb-icon>
@@ -89,12 +90,13 @@
                 <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.surname}} </td>
 
                 <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.dateNaissance}} </td>
-                <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.email}} </td>
+
                 <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.numtel}} </td>
+                <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.email}} </td>
                 <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.nationality}} </td>
                 <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.motivationtext}} </td>
                 <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">
-                  <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="removeRow()">Accept</button>
+                  <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="removeA('data.id')">Accept</button>
                   <button
                     type="button"
                     mdbBtn

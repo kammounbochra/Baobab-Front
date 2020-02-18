@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtResponse } from '../Auth/jwt-response';
 import { JournalistLogin } from '../models/Journalist-login';
+import {UserService} from './user.service';
 
 const httpOptions = { headers: new HttpHeaders ({'ContentType' : 'application/json'
     })
@@ -11,15 +12,16 @@ const httpOptions = { headers: new HttpHeaders ({'ContentType' : 'application/js
 @Injectable({
   providedIn: 'root'
 })
-export class JournalistService {
-  private baseUrl = 'http://localhost:8080/journalist/auth';
+export class JournalistService  {
 
+
+  private baseUrl = 'http://localhost:8080/journalist/auth';
   constructor(private http: HttpClient) {
   }
 
   private journaliste: JournalistSignup ;
 
-  signUp(journaliste: Object): Observable<Object> {
+  signUpJ(journaliste: Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}` + `/signup`, journaliste);
   }
 

@@ -1,179 +1,163 @@
-<app-menu-mod>  </app-menu-mod>
-
-<!--
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto mt-5">
-
-    </div>
-  </div>
-
-  &lt;!&ndash; Basic example &ndash;&gt;
-  <div class="row">
-    <div class="col-md-12 mx-auto text-center mt-5">
-
-      &lt;!&ndash; Editable table &ndash;&gt;
-      <div class="card">
-        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
-        <div class="card-body">
-          <div id="table" class="table-editable">
-            <span class="table-add float-right mb-3 mr-2">
-              <a class="text-success" (click)="add()"> <i class="fa fa-plus left">
-               </i>
-              </a>
-            </span>
-            <table class="table table-bordered table-responsive-md table-striped text-center">
-              <tr>
-                <th class="text-center">Person Name</th>
-                <th class="text-center">Age</th>
-                <th class="text-center">Company Name</th>
-                <th class="text-center">Country</th>
-                <th class="text-center">City</th>
-                <th class="text-center">Sort</th>
-                <th class="text-center">Remove</th>
-              </tr>
-              <tr *ngFor="let person of personList; let id = index">
-                <td contenteditable="true" (keyup)="changeValue(id, 'name', $event)">{{person.name}}</td>
-                <td contenteditable="true" (keyup)="changeValue(id, 'age', $event)">{{person.age}}</td>
-                <td contenteditable="true" (keyup)="changeValue(id, 'companyName', $event)">{{person.companyName}}</td>
-                <td contenteditable="true" (keyup)="changeValue(id, 'country', $event)">{{person.country}}</td>
-                <td contenteditable="true" (keyup)="changeValue(id, 'city', $event)">{{person.city}}</td>
-                <td>
-                  <span class="table-up">
-                    <a class="indigo-text">
-                      <i class="fa fa-sort left "></i>
-                    </a>
-                  </span>
-                  <span class="table-down">
-                    <a class="indigo-text">
-                      <mdb-icon icon="long-arrow-down"></mdb-icon>
-                    </a>
-                  </span>
-                </td>
-                <td>
-                  <span class="table-remove">
-                    <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)">Remove</button>
-                  </span>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-      &lt;!&ndash; Editable table &ndash;&gt;
-    </div>
-  </div>
-  &lt;!&ndash; Basic example &ndash;&gt;
-
-  <hr class="my-5">
-</div>
--->
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 mx-auto mt-5">
-
+      <h2 class="text-center">Angular Bootstrap Datatables</h2>
     </div>
   </div>
 
   <!-- Basic example -->
   <div class="row">
     <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Basic example</h4>
+      <div class="card card-cascade narrower mt-5">
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 mx-auto">
-      <div class="md-form">
-        <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
-               mdbInput>
-        <label for="search-input">Search</label>
+        <!--Card image-->
+        <div class="view view-cascade gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
+
+          <h4 class="white-text font-weight-bold text-uppercase mb-0">Advanced table</h4>
+
+        </div>
+
+        <!--/Card image-->
+        <div class="row  d-flex align-items-center justify-content-center">
+          <div class="col-md-6 mx-auto">
+            <div class="md-form">
+              <input type="search" [(ngModel)]="searchText" id="search" class="form-control" mdbInputDirective [mdbValidate]="false">
+              <label for="search">Search data</label>
+            </div>
+          </div>
+          <div class="col-md-3 mx-auto">
+            <button class="btn btn-primary waves-light btn-sm" mdbWavesEffect >Generate CSV</button>
+          </div>
+        </div>
+        <div class="px-2">
+
+          <!--Table-->
+          <table class="table table-hover table-responsive-md mb-0">
+
+            <!--Table head-->
+            <thead>
+            <tr>
+              <th>Name
+                <mdb-icon icon="sort" (click)="sortBy('name')"></mdb-icon>
+              </th>
+              <th>Surname
+                <mdb-icon icon="sort" (click)="sortBy('surname')"></mdb-icon>
+              </th>
+
+              <th>Date Naissance
+                <mdb-icon icon="sort" (click)="sortBy('dateNaissance')"></mdb-icon>
+              </th>
+
+
+              <th>Numéro
+                <mdb-icon icon="sort" (click)="sortBy('numtel')"></mdb-icon>
+              </th>
+              <th>Email
+                <mdb-icon icon="sort" (click)="sortBy('email')"></mdb-icon>
+              </th>
+              <th>Nationality
+                <mdb-icon icon="sort" (click)="sortBy('nationality')"></mdb-icon>
+              </th>
+              <th>motivationtext
+                <mdb-icon icon="sort" (click)="sortBy('motivationtext')"></mdb-icon>
+              </th>
+              <th>Actions
+              </th>
+            </tr>
+            </thead>
+            <!--Table head-->
+
+            <!--Table body-->
+            <tbody>
+            <tr #list *ngFor="let data of search(); let i = index">
+              <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.id}}</th>
+              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.name}}</td>
+              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.surname}} </td>
+
+              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.dateNaissance}} </td>
+
+              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.numtel}} </td>
+              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.email}} </td>
+              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.nationality}} </td>
+              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.motivationtext}} </td>
+              <td >
+                <span>
+                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove('data.id')">Accept</button>
+                <button
+                  type="button"
+                  mdbBtn
+                  color="default"
+                  rounded="true"
+                  size="sm" class="my-0"
+                  data-toggle="modal"
+                  data-target="#basicExample"
+                  (click)="frame.show()"
+                  mdbWavesEffect>Détails    </button></span>
+              </td>
+            </tr>
+            </tbody>
+            <!--Table body-->
+          </table>
+
+        </div>
+
+        <hr class="my-0">
+
+        <!--Bottom Table UI-->
+        <div class="d-flex justify-content-center">
+
+          <!--Pagination -->
+          <nav class="my-4 pt-2">
+            <ul class="pagination pagination-circle pg-purple mb-0">
+
+              <!--First-->
+              <li class="page-item clearfix d-none d-md-block" (click)="firstPage()" [ngClass]="{disabled: activePage == firstPageNumber}">
+                <a class="page-link">First</a>
+              </li>
+
+              <!--Arrow left-->
+              <li class="page-item" (click)="previousPage()" [ngClass]="{disabled: activePage == firstPageNumber}">
+                <a class="page-link" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+
+              <!--Numbers-->
+              <li *ngFor="let page of paginators; let i = index" class="page-item" [ngClass]="{active: i+1 == activePage}">
+                <a class="page-link waves-light" (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
+              </li>
+
+
+
+              <!--Arrow right-->
+              <li class="page-item" (click)="nextPage()" [ngClass]="{disabled: activePage == lastPageNumber}">
+                <a class="page-link" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+
+              <!--First-->
+              <li class="page-item clearfix d-none d-md-block" (click)="lastPage()" [ngClass]="{disabled: activePage == lastPageNumber}">
+                <a class="page-link">Last</a>
+              </li>
+
+            </ul>
+          </nav>
+          <!--/Pagination -->
+
+        </div>
+        <!--Bottom Table UI-->
+
       </div>
     </div>
-    <div class="table table-responsive-md  text-center">
-      <table class="table table-hover table-responsive-md mb-0  table-striped "  cellspacing="0" width="100%">      <thead class="sticky-top">
-      <tr>
-        <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements" [sortBy]="headElements[i]"
-            scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
-
-        </th>
-      </tr>
-      </thead>
-      <tbody #row>
-<!--
-      (rowCreated)="onRowCreate($event)" (rowRemoved)="onRowRemove($event)"
--->
-      <tr #list  *ngFor="let data of elements; let i = index">
-
-  <!-- <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.id}}</th>-->
-  <!--
-                  <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.id}}</th>
-  -->
-  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex  && i < mdbTablePagination.lastItemIndex">{{data.name}} </td>
-  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{data.surname}} </td>
-  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex  && i < mdbTablePagination.lastItemIndex">{{data.username}} </td>
-  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex  && i < mdbTablePagination.lastItemIndex">{{data.datenaiss}} </td>
-  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex   && i < mdbTablePagination.lastItemIndex">{{data.nationality}} </td>
-  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex   && i < mdbTablePagination.lastItemIndex">{{data.email}} </td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"> <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="removeRow()">Accept</button>
-          <button
-            type="button"
-            mdbBtn
-            color="default"
-            rounded="true"
-            size="sm" class="my-0"
-            data-toggle="modal"
-            data-target="#basicExample"
-            (click)="frame.show()"
-            mdbWavesEffect>Détails    </button>
-        </td>
-
-      </tr>
-      </tbody>
-      <tfoot class="grey lighten-5 w-200">
-      <tr>
-        <td colspan="6">
-          <mdb-table-pagination [tableEl]="tableEl" paginationAlign="" [searchDataSource]="elements"></mdb-table-pagination>
-        </td>
-      </tr>
-      </tfoot>
-    </table>
-    </div>
   </div>
+  <!-- Basic example -->
+
+  <hr class="my-5">
 </div>
-    </div>
-  </div>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-  </p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-  </p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-    in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-  </p>
-
-
-
-
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-notify modal-success" role="document">

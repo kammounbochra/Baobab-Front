@@ -15,18 +15,22 @@ export class JDashboardComponent implements OnInit {
   @Input() art: Article;
   articles: Article[];
 
-  journalistes:  Object = [];
+  journalists:  Object = [];
 
   num: any;
   headElements: [' Id', 'Name', 'Surname' , 'Date Naissance' , 'Numero', 'Email', 'Nationality', 'Motivation' ,  'Actions']
+  private projects: any;
+  private user: any;
+
   constructor(private articleService: ArticleService, private journalistService: JournalistService) {
   }
 
   ngOnInit() {
 
     this.journalistService.getAll().subscribe(data => {
-      this.journalistes = data;
+      this.journalists = data;
       console.log(data); })
+
 
     this.articleService.getArticleList().subscribe(dat => {
       this.articles = dat;

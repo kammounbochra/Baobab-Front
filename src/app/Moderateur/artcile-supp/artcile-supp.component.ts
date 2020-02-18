@@ -60,9 +60,7 @@ export class ArtcileSuppComponent implements OnInit {
  journalistes: Object;
 
   constructor(private journalisteService: JournalistService,
-              private fb: FormBuilder , private _router: Router
-  )
-  { }
+              private fb: FormBuilder , private _router: Router) { }
 
   ngOnInit() {
     this.journalisteService.getAll().subscribe(dat => {
@@ -158,11 +156,11 @@ export class ArtcileSuppComponent implements OnInit {
   filterIt(arr: any, searchKey: any) {
     return arr.filter((obj: any) => {
       return Object.keys(obj).some((key) => {
-
         return obj[key].includes(searchKey);
       });
     });
   }
+
   search() {
     if (!this.searchText) {
       return this.tableData;
@@ -171,6 +169,7 @@ export class ArtcileSuppComponent implements OnInit {
       return this.filterIt(this.tableData, this.searchText);
     }
   }
+
 
 /*  generateCsv() {
     new Angular5Csv(this.search(), 'journaliste', this.options);
@@ -247,6 +246,20 @@ export class ArtcileSuppComponent implements OnInit {
     this.mdbTable.rowRemoved().subscribe((data: any) => {
       console.log(data);
     });
+  }
+
+
+  removeA(id: any) {
+    this.tableData.push(this.list[id]);
+    this.tableData.splice(id, 1);
+  }
+
+  add() {
+    if (this.tableData.length > 0) {
+      const person = this.tableData[0];
+      this.list.push(person);
+      this.tableData.splice(0, 1);
+    }
   }
 
   emitDataSourceChange() {

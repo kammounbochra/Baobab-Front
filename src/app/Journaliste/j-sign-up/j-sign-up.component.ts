@@ -47,13 +47,14 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
   testForm: FormGroup;
   submitted = false;
   loading = false;
-  private username : string;
-  private password : string;
+  private username: string;
+  private password: string;
   private nationality: string;
-  private  numtel : string;
-
+  private  numtel: any;
+  private  email: any;
+  private dateNaissance : any ;
   //journalist: JournalistSignup = new JournalistSignup(this.role );
-  journalist: JournalistSignup = new JournalistSignup(this.username, this.password, this.nationality, this.numtel, this.role);
+  journalist: JournalistSignup = new JournalistSignup(this.username, this.email , this.password, this.nationality, this.numtel, this.dateNaissance);
   @Input() j: JournalistSignup;
   journalistes: Observable<JournalistSignup[]>;
 
@@ -156,7 +157,7 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
 
    // alert('SUCCESS!! :-)');
   signup() {  if (this.testForm.valid) {
-  this.journalistService.signUp(this.journalist).subscribe( data => {  console.log('aaaaa', data);
+  this.journalistService.signUpJ(this.journalist).subscribe( data => {  console.log('aaaaa', data);
   this.journalist = data as JournalistSignup;
     this.showInfo();
     });
