@@ -4,18 +4,19 @@ import {Country} from './Country';
 import {Tags} from './Tags';
 import {Category} from './Category';
 import {ArticleTags} from './Article_tags';
+import {ArticleContent} from './Article_content';
 
 export class Article {
     id: any;
     date: Date;
-    contentDetails: ContentDetails;
+  contentDetails: ContentDetails;
     author: JournalistSignup;
     link: string;
     status: any;
     countries: Country;
-  tags: Tags;
+  tags: ArticleTags;
   articletags : ArticleTags;
   categories : Category ;
-
+  articleContent: ArticleContent;
 
 }

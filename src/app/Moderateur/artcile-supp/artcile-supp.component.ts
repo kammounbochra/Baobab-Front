@@ -60,7 +60,8 @@ export class ArtcileSuppComponent implements OnInit {
  journalistes: Object;
 
   constructor(private journalisteService: JournalistService,
-              private fb: FormBuilder , private _router: Router) { }
+              private fb: FormBuilder , private _router: Router)
+  { }
 
   ngOnInit() {
     this.journalisteService.getAll().subscribe(dat => {
@@ -257,7 +258,7 @@ export class ArtcileSuppComponent implements OnInit {
   add() {
     if (this.tableData.length > 0) {
       const person = this.tableData[0];
-      this.list.push(person);
+      this.tableData.push(person);
       this.tableData.splice(0, 1);
     }
   }

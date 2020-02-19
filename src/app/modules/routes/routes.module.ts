@@ -317,6 +317,12 @@ const routes: Routes = [
   { path: 'm_login', component: MLoginComponent },
 
 
+  { path: 'j_dashboard', component: JDashboardComponent,
+    children: [
+      {
+        path: 'j_liste/:idUser' ,
+        component : JListeComponent
+      }]}
 
 
 ];

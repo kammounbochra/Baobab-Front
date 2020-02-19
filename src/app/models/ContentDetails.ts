@@ -2,7 +2,7 @@ import { language } from './Language';
 
 export class ContentDetails {
     id: any;
-    content_text: any;
-    title: any;
+    content: any;
+    titre: any;
     Language: language;
 }

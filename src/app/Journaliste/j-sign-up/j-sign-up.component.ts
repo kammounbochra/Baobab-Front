@@ -53,8 +53,8 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
   private  numtel: any;
   private  email: any;
   private dateNaissance : any ;
-  //journalist: JournalistSignup = new JournalistSignup(this.role );
-  journalist: JournalistSignup = new JournalistSignup(this.username, this.email , this.password, this.nationality, this.numtel, this.dateNaissance);
+  journalist: JournalistSignup = new JournalistSignup(this.role );
+  // journalist: JournalistSignup = new JournalistSignup(this.username, this.email , this.password, this.nationality, this.numtel, this.dateNaissance);
   @Input() j: JournalistSignup;
   journalistes: Observable<JournalistSignup[]>;
 

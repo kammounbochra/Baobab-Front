@@ -21,7 +21,7 @@
   <tr mdbTableCol *ngFor="let el of journalists ">
 
 
-    <th scope="row">{{el.idUser}}  </th>
+    <th scope="row">{{el.idUser |number}}  </th>
     <td>1{{el.username}}</td>
 <!--
     <td [(ngModel)]="journalists.idUser" >2 {{var el = el;el}}</td>
@@ -36,6 +36,7 @@
     <td>8{{el.name}}</td>
     <td>9{{el.surname}}</td>
     <td>10{{el.role}}</td>
+    <td><button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="updateE(49)" mdbWavesEffect>Détails    </button> </td>
 
   </tr>
   </tbody>

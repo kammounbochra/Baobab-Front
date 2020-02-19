@@ -135,14 +135,19 @@
                     <!-- Grid column -->
                     <div class="col-md-9">
 
-                      <!-- Excerpt -->
-                      <p class="font-weight-bold dark-grey-text">{{article.date | date}}</p>
+                      <!-- Excerpt -->                           <div  *ngFor ="let art of article.contentDetails">
+
+                    <p class="font-weight-bold dark-grey-text"> {{art.titre}}</p>
 
                       <div class="d-flex justify-content-between">
                         <div class="col-11 text-truncate pl-0 mb-3">
-                          <a routerLink="article_details" class="dark-grey-text">  {{article.contentDetails.title}}</a>
-                          {{article.tags.libelle}}
-                        </div>
+                          <a routerLink="article_details" class="dark-grey-text"> </a>
+                          {{art.content}} </div>
+                        <!--  <div  *ngFor ="let art of article.tags">
+                          {{art.libelle}} {{article.author.surname}}</div>-->
+
+                      </div>
+
                         <a routerLink="article_details">
                           <i class="fa fa-angle-double-right"></i>     <a routerLink="article_details" class="dark-grey-text"></a>
                         </a>
@@ -150,10 +155,8 @@
 
                     </div>
                     <!-- Grid column -->
-
                   </div>
                   <!-- Grid row -->
-
                 </div>
                 <!-- Small news -->
 

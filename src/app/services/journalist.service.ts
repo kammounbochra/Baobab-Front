@@ -34,9 +34,25 @@ export class JournalistService  {
   getAll() {
     return this.http.get(`${this.baseUrl}` + `/`);
   }
- /* signUp(info:JournalistSignup):Observable<string>{
-    return this.http.post<string>(this.signupUrl,info,httpOptions)
-  }*/
+
+  getEncours() {
+    return this.http.get(`${this.baseUrl}` + `/PendingJournalist`);
+  }
+
+
+  Update(id: any, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrl}` + `/changeStatus/${id}`, value , httpOptions);
+  }
+
+
+  updateJ(idUser: any, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrl}` + `/j/` + idUser, value);
+  }
+
+
+  /* signUp(info:JournalistSignup):Observable<string>{
+     return this.http.post<string>(this.signupUrl,info,httpOptions)
+   }*/
 
 /*  GetMyArticle(id:number):Observable<any>{
     return this.http.get(this.baseURL+id);

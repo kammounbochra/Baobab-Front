@@ -36,8 +36,8 @@ export class FootersComponent implements OnInit , AfterViewInit {
 
 
   public dataRemote: CompleterData;
- // journalist: JournalistSignup = new JournalistSignup(this.role);
-  journalist: JournalistSignup = new JournalistSignup(this.username, this.password, this.nationality, this.numtel , this.role , this.dateNaissance)
+ journalist: JournalistSignup = new JournalistSignup(this.role);
+  //  journalist: JournalistSignup = new JournalistSignup(this.username, this.password, this.nationality, this.numtel , this.role , this.dateNaissance, this.name)
 
   @Input() j: JournalistSignup;
   journalistess: Observable<JournalistSignup[]>;

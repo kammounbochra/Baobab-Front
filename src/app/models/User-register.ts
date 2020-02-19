@@ -1,5 +1,5 @@
 export class UserRegister {
-  id: number ;
+  id: any ;
 username: string;
 email: string;
 role: string[];

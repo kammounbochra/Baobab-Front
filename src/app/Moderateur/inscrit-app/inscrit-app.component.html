@@ -38,6 +38,9 @@
             <!--Table head-->
             <thead>
             <tr>
+              <th>id
+                <mdb-icon icon="sort" (click)="sortBy('id')"></mdb-icon>
+              </th>
               <th>Name
                 <mdb-icon icon="sort" (click)="sortBy('name')"></mdb-icon>
               </th>
@@ -71,7 +74,9 @@
             <!--Table body-->
             <tbody>
             <tr #list *ngFor="let data of search(); let i = index">
-              <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.id}}</th>
+
+              <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.id }}</th>
+              <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.idUser }}</th>
               <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.name}}</td>
               <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.surname}} </td>
 
@@ -83,23 +88,16 @@
               <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.motivationtext}} </td>
               <td >
                 <span>
-                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove('data.id')">Accept</button>
-                <button
-                  type="button"
-                  mdbBtn
-                  color="default"
-                  rounded="true"
-                  size="sm" class="my-0"
-                  data-toggle="modal"
-                  data-target="#basicExample"
-                  (click)="frame.show()"
-                  mdbWavesEffect>Détails    </button></span>
+                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(data.id) ">Accept</button>
+                <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="update(a)" mdbWavesEffect>Détails    </button></span>
               </td>
             </tr>
             </tbody>
             <!--Table body-->
           </table>
-
+<!--
+(click)="frame.show()"
+-->
         </div>
 
         <hr class="my-0">

@@ -4,6 +4,7 @@ import {ArticleService} from '../../services/article.service';
 import {Observable} from 'rxjs';
 import {JournalistService} from '../../services/journalist.service';
 import {JournalistSignup} from '../../models/Journalist-signup';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-j-dashboard',
@@ -21,15 +22,19 @@ export class JDashboardComponent implements OnInit {
   headElements: [' Id', 'Name', 'Surname' , 'Date Naissance' , 'Numero', 'Email', 'Nationality', 'Motivation' ,  'Actions']
   private projects: any;
   private user: any;
+  private role: string;
+  journaliste: JournalistSignup = new JournalistSignup(this.role);
+  private etat = 'valid';
 
-  constructor(private articleService: ArticleService, private journalistService: JournalistService) {
+
+  constructor(private articleService: ArticleService, private journalistService: JournalistService,  private _router: Router) {
   }
 
   ngOnInit() {
 
     this.journalistService.getAll().subscribe(data => {
       this.journalists = data;
-      console.log(data); })
+      console.log(data);  })
 
 
     this.articleService.getArticleList().subscribe(dat => {
@@ -39,4 +44,14 @@ export class JDashboardComponent implements OnInit {
     });
 
   }
+
+
+  updateE(idUser: any) {
+    this.journalistService.updateJ(this.journaliste.idUser,
+      {name: this.journaliste.name,
+        status: this.journaliste.status  = this.etat} ).subscribe(data => {
+      console.log(data);
+      this.journaliste = data as JournalistSignup;
+      this._router.navigate(['/j_liste']);
+    }); }
 }

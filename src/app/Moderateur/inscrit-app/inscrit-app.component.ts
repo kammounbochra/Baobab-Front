@@ -15,6 +15,8 @@ import {Http} from '@angular/http';
 import {Angular5Csv} from 'angular5-csv/Angular5-csv';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
+import {JournalistSignup} from '../../models/Journalist-signup';
+
 
 @Component({
   selector: 'app-inscrit-app',
@@ -55,10 +57,12 @@ export class InscritAppComponent implements OnInit , AfterViewInit {
   validatingForm: FormGroup;
   journalistes: Object;
   private editField: string;
+  private id: any;
+private role: any ;
+  journaliste: JournalistSignup = new JournalistSignup(this.role);
+  private etat: 'valid';
 
-
-
-
+private a  ;
   constructor(private journalisteService: JournalistService,
               private fb: FormBuilder , private _router: Router) { }
 
@@ -71,18 +75,24 @@ export class InscritAppComponent implements OnInit , AfterViewInit {
       });*/
 
 
-      this.journalisteService.getAll().subscribe((next: any) => {
+      this.journalisteService.getEncours().subscribe((next: any) => {
         next.forEach((element: any) => {
-          this.tableData.push({  id: element.id ,
+          this.tableData.push({  id: element.id,
+            idUser: Number(element.idUser ),
             name: element.name ,
             surname: element.surname ,
             dateNaissance: element.dateNaissance ,
             numtel: element.numtel ,
             email: element.email ,
             nationality: element.nationality ,
-            motivationtext: element.motivationtext ,
-          });
+            motivationtext: element.motivationtext,
+
+          });       console.log(element);  console.log(element.idUser);
+         this.a = Number(element.idUser ) ;
+         console.log('aaa' , this.a);
         });
+
+
       });
 
     setTimeout(() => {
@@ -177,11 +187,35 @@ export class InscritAppComponent implements OnInit , AfterViewInit {
   ngAfterViewInit(): void {
   }
   remove(id: any) {
-    this.tableData.push(this.tableData[id]);
+   // this.updateEtat(this.id);
+          this.tableData.push(this.tableData[id]);
     this.tableData.splice(id, 1);
-  //  this.journalisteService.delete
   }
 
+
+  updateE(idUser: any) {
+    this.journalisteService.Update(this.journaliste.idUser,
+      {name: this.journaliste.name,
+        status: this.journaliste.status} ).subscribe(data => {
+      console.log(data);
+      this.journaliste = data as JournalistSignup;
+    }); }
+
+
+  update(idUser: any) {
+    this.journalisteService.updateJ(this.journaliste.idUser,
+      {name: this.journaliste.name,
+        status: this.journaliste.status  = this.etat} ).subscribe(data => {
+      console.log(data);
+      this.journaliste = data as JournalistSignup;
+      this._router.navigate(['/j_liste']);
+    }); }
+
+/*  update(id: number) {
+    this.journalisteService.Update(this.journaliste.id).subscribe(data => {
+      console.log(data);
+      this.journaliste = data as JournalistSignup;
+    }); }*/
   addNewRow() {
     this.mdbTable.addRow({
       id: this.elements.length.toString(),
@@ -217,6 +251,7 @@ export class InscritAppComponent implements OnInit , AfterViewInit {
     this.mdbTable.rowRemoved().subscribe((data: any) => {
       console.log(data);
     });
+
   }
 
 
