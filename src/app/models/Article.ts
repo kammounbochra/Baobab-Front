@@ -7,7 +7,7 @@ import {ArticleTags} from './Article_tags';
 import {ArticleContent} from './Article_content';
 
 export class Article {
-    id: any;
+  idArticle: any;
     date: Date;
   contentDetails: ContentDetails;
     author: JournalistSignup;

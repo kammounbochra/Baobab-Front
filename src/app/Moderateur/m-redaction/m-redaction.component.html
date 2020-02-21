@@ -64,6 +64,23 @@
 
                 </div>
               </div>
+<label for="categorie" class="col-sm-2 col-form-label">categorie </label>
+
+              <div class="col-sm-4">
+                <div class="md-form mt-0">
+                  <select class="browser-default custom-select" name="categorie"  #categorie name="categorie"
+                          id="categorie">
+<!--
+                    [(ngModel)]=".organisme_assurance"
+-->
+
+                    <option  *ngFor="let categ of categorys" [value]="categ.id" >{{categ.name |uppercase}}</option>
+                  </select>
+
+                </div>
+
+</div>
+
             </div>
 
 

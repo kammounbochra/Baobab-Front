@@ -1,3 +1,4 @@
+<app-menu-mod> </app-menu-mod>
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto mt-5">
@@ -89,7 +90,15 @@
               <td >
                 <span>
                 <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(data.id) ">Accept</button>
-                <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="update(a)" mdbWavesEffect>Détails    </button></span>
+                <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="update( data.idUser.param )" mdbWavesEffect>1   </button>
+                <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="updateJ( data.idUser )" mdbWavesEffect>2    </button></span>
+
+
+                <a class="badge badge-warning" click="/article_details/{{ data.id }}">
+                  Edit
+                </a>
+
+
               </td>
             </tr>
             </tbody>

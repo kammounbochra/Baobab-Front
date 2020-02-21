@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" xmlns:orderBy="http://www.w3.org/1999/xhtml">
 
   <hr class="my-5">
 
@@ -36,35 +36,484 @@
 
     <div class="container">
 
-
-      <!-- Magazine newsfeed v.2 -->
       <div class="row">
         <div class="col-md-12 mx-auto">
 
-          <!--Section: Magazine v.2-->
           <section class="magazine-section my-5">
 
-            <h4 class="font-weight-normal success-lighter-hover mb-2">Economie & Energie</h4>
+            <h4 class="font-weight-normal success-lighter-hover mb-2"> Entreprise  </h4>
+            <div class="progress md-progress">
+              <div class="progress-bar bg-success " role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                   aria-valuemax="100"></div>
+            </div>
+
+
+            <div class="row" >
+              <div class="col">
+              <div>
+
+
+                <div class="single-news mb-lg-0 mb-4">
+
+
+                  <div class="view overlay rounded z-depth-1-half mb-4">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
+                    <a>
+                      <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                    </a>
+                  </div>
+
+
+                  <div class="news-data d-flex justify-content-between">
+                    <a href="#!" class="deep-orange-text">
+                      <h6 class="font-weight-bold">
+                        <i class="fa fa-cutlery pr-2"></i>Culinary</h6>
+                    </a>
+                    <p class="font-weight-bold dark-grey-text">
+                      <i class="fa fa-clock-o pr-2"></i>27/02/2018</p>
+                  </div>
+
+
+                  <h3 class="font-weight-bold dark-grey-text mb-3">
+                    <a>Title of the news</a>
+                  </h3>
+                  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">Sed ut perspiciatis unde voluptatem omnis iste natus
+                    error
+                    sit voluptatem accusantium doloremque laudantium,
+                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                    explicabo.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+
+                  <button type="button" class="btn btn-slack btn-rounded" routerLink="/article_details"><i
+                    class="fas fa-angle-double-right"></i> Read More
+                  </button>
+
+                </div>
+
+              </div>
+              </div>
+
+
+              <div class="col">
+
+
+              <div  *ngFor="let artEnt of artEntreprise ">
+
+
+                <div class="single-news mb-4">
+
+
+                  <div class="row">
+
+
+                    <div class="col-md-3">
+
+
+                      <div class="view overlay rounded z-depth-1 mb-4">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
+                             alt="Sample image">
+                        <a>
+                          <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                        </a>
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-9">
+                      <div *ngFor="let at of artEnt.contentDetails">
+                      <p class="font-weight-bold dark-grey-text">{{at.titre }}</p>
+                      <div class="d-flex justify-content-between">
+                        <div class="col-11 text-truncate pl-0 mb-3">
+                          <a  routerLink="/article_details/{{artEnt.idArticle}}" class="dark-grey-text">{{at.content | slice : 0:55 }} </a>
+                        </div>
+                      </div>
+                        <a  routerLink="/article_details/{{artEnt.idArticle}}">
+                          <i class="fa fa-angle-double-right" ></i>
+                        </a>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+
+
+
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+
+          <section class="magazine-section my-5">
+
+            <h4 class="font-weight-normal cyan-lighter-hover mb-2"> Economie  </h4>
+            <div class="progress md-progress">
+              <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                   aria-valuemax="100"></div>
+            </div>
+
+
+            <div class="row" >
+              <div class="col">
+              <div>
+
+
+                <div class="single-news mb-lg-0 mb-4">
+
+
+                  <div class="view overlay rounded z-depth-1-half mb-4">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
+                    <a>
+                      <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                    </a>
+                  </div>
+
+
+                  <div class="news-data d-flex justify-content-between">
+                    <a href="#!" class="deep-orange-text">
+                      <h6 class="font-weight-bold">
+                        <i class="fa fa-cutlery pr-2"></i>Culinary</h6>
+                    </a>
+                    <p class="font-weight-bold dark-grey-text">
+                      <i class="fa fa-clock-o pr-2"></i>27/02/2018</p>
+                  </div>
+
+
+                  <h3 class="font-weight-bold dark-grey-text mb-3">
+                    <a>Title of the news</a>
+                  </h3>
+                  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">Sed ut perspiciatis unde voluptatem omnis iste natus
+                    error
+                    sit voluptatem accusantium doloremque laudantium,
+                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                    explicabo.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+
+                  <button type="button" class="btn btn-slack btn-rounded" routerLink="/article_details"><i
+                    class="fas fa-angle-double-right"></i> Read More
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+              <div class="col">
+
+              <div  *ngFor="let artco of artEco ">
+
+
+                <div class="single-news mb-4">
+
+
+                  <div class="row">
+
+
+                    <div class="col-md-3">
+
+
+                      <div class="view overlay rounded z-depth-1 mb-4">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
+                             alt="Sample image">
+                        <a>
+                          <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                        </a>
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-9">
+
+                    <div *ngFor="let ar of artco.contentDetails">
+                      <p class="font-weight-bold dark-grey-text">{{ar.titre }}</p>
+                      <div class="d-flex justify-content-between">
+                        <div class="col-11 text-truncate pl-0 mb-3">
+                          <a href="#!" class="dark-grey-text">{{ar.content | slice : 0:55 }}}} </a>
+                        </div>
+                      </div>
+                      <a  routerLink="/article_details/{{artco.idArticle}}">
+                        <i class="fa fa-angle-double-right" ></i>
+                      </a>
+                    </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+
+          <section class="magazine-section my-5">
+
+            <h4 class="font-weight-normal deep-orange-lighter-hover mb-2"> Lifestyle  </h4>
+            <div class="progress md-progress">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                   aria-valuemax="100"></div>
+            </div>
+
+
+
+            <div class="row" >
+              <div class="col">
+                <div>
+
+
+                  <div class="single-news mb-lg-0 mb-4">
+
+
+                    <div class="view overlay rounded z-depth-1-half mb-4">
+                      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
+                      <a>
+                        <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                      </a>
+                    </div>
+
+
+                    <div class="news-data d-flex justify-content-between">
+                      <a href="#!" class="deep-orange-text">
+                        <h6 class="font-weight-bold">
+                          <i class="fa fa-cutlery pr-2"></i>Culinary</h6>
+                      </a>
+                      <p class="font-weight-bold dark-grey-text">
+                        <i class="fa fa-clock-o pr-2"></i>27/02/2018</p>
+                    </div>
+
+
+                    <h3 class="font-weight-bold dark-grey-text mb-3">
+                      <a>Title of the news</a>
+                    </h3>
+                    <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">Sed ut perspiciatis unde voluptatem omnis iste natus
+                      error
+                      sit voluptatem accusantium doloremque laudantium,
+                      totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                      explicabo.
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+
+                    <button type="button" class="btn btn-slack btn-rounded" routerLink="/article_details"><i
+                      class="fas fa-angle-double-right"></i> Read More
+                    </button>
+
+                  </div>
+
+                </div>
+              </div>
+
+
+              <div class="col">
+
+
+                <div  *ngFor="let artl of artLifestyle"  >
+
+
+                  <div class="single-news mb-4">
+
+
+                    <div class="row">
+
+
+                      <div class="col-md-3">
+
+
+                        <div class="view overlay rounded z-depth-1 mb-4">
+                          <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
+                               alt="Sample image">
+                          <a>
+                            <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                          </a>
+                        </div>
+
+                      </div>
+
+                      <div class="col-md-9">
+                        <div *ngFor="let atl of artl.contentDetails">
+                          <p class="font-weight-bold dark-grey-text">{{atl.titre}}</p>
+                          <div class="d-flex justify-content-between">
+                            <div class="col-11 text-truncate pl-0 mb-3">
+                              <a  routerLink="/article_details/{{artl.idArticle}}" class="dark-grey-text">{{atl.content | slice : 0:55 }} </a>
+                            </div>
+                          </div>
+                          <a  routerLink="/article_details/{{artl.idArticle}}">
+                            <i class="fa fa-angle-double-right" ></i>
+                          </a>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+
+          <section class="magazine-section my-5">
+
+            <h4 class="font-weight-normal pink-lighter-hover mb-2"> Technologie  </h4>
+            <div class="progress md-progress">
+              <div class="progress-bar bg-danger " role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                   aria-valuemax="100"></div>
+            </div>
+
+
+            <div class="row" >
+
+              <div class="col">
+
+
+                <div class="single-news mb-lg-0 mb-4">
+
+
+                  <div class="view overlay rounded z-depth-1-half mb-4">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
+                    <a>
+                      <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                    </a>
+                  </div>
+
+
+                  <div class="news-data d-flex justify-content-between">
+                    <a href="#!" class="deep-orange-text">
+                      <h6 class="font-weight-bold">
+                        <i class="fa fa-cutlery pr-2"></i>Culinary</h6>
+                    </a>
+                    <p class="font-weight-bold dark-grey-text">
+                      <i class="fa fa-clock-o pr-2"></i>27/02/2018</p>
+                  </div>
+
+
+                  <h3 class="font-weight-bold dark-grey-text mb-3">
+                    <a>Title of the news</a>
+                  </h3>
+                  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">Sed ut perspiciatis unde voluptatem omnis iste natus
+                    error
+                    sit voluptatem accusantium doloremque laudantium,
+                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                    explicabo.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+
+                  <button type="button" class="btn btn-slack btn-rounded" routerLink="/article_details"><i
+                    class="fas fa-angle-double-right"></i> Read More
+                  </button>
+
+                </div>
+
+              </div>
+
+
+            <div class="col">
+              <div *ngFor="let artte of artTech ">
+
+
+                <div class="single-news mb-4">
+
+
+                  <div class="row">
+
+
+                    <div class="col-md-3">
+
+
+                      <div class="view overlay rounded z-depth-1 mb-4">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
+                             alt="Sample image">
+                        <a>
+                          <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                        </a>
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-9">
+
+                       <div *ngFor="let ar of artte.contentDetails">
+                      <p class="font-weight-bold dark-grey-text">{{ar.titre}}</p>
+                      <div class="d-flex justify-content-between">
+                        <div class="col-11 text-truncate pl-0 mb-3">
+                          <a href="#!" class="dark-grey-text">{{ar.content | slice : 0:55 }} </a>
+                        </div>
+                      </div>
+                        <a  routerLink="/article_details{{artte.idArticle}}">
+                          <i class="fa fa-angle-double-right" ></i>
+                        </a>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+      <!-- Magazine newsfeed v.2 -->
+    <!--  <div class="row">
+        <div class="col-md-12 mx-auto">
+
+          &lt;!&ndash;Section: Magazine v.2&ndash;&gt;
+          <section class="magazine-section my-5">
+
+            <h4 class="font-weight-normal success-lighter-hover mb-2">Economie </h4>
 
             <div class="progress md-progress">
               <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
                    aria-valuemin="0" aria-valuemax="100"></div>
             </div>
 
-            <!-- Grid row -->
+            &lt;!&ndash; Grid row &ndash;&gt;
             <div class="row">
 
 
               <mdb-progress value="50" min="0" max="100" type="info" aria-valuenow="50" aria-valuemin="0"
                             aria-valuemax="100"></mdb-progress>
 
-              <!-- Grid column -->
+
               <div class="col-lg-6 col-md-12">
 
-                <!-- Featured news -->
+                &lt;!&ndash; Featured news &ndash;&gt;
                 <div class="single-news mb-lg-0 mb-4">
 
-                  <!-- Image -->
+                  &lt;!&ndash; Image &ndash;&gt;
                   <div class="view overlay rounded z-depth-1-half mb-4">
                     <img class="img-fluid" src="../../../assets/img_art/a1.jpg" alt="Sample image">
                     <a>
@@ -72,7 +521,7 @@
                     </a>
                   </div>
 
-                  <!-- Data -->
+                  &lt;!&ndash; Data &ndash;&gt;
                   <div class="news-data d-flex justify-content-between">
                     <a href="#!" class="deep-orange-text">
                       <h6 class="font-weight-bold">
@@ -82,46 +531,40 @@
                       <i class="fa fa-clock-o pr-2"></i>xxx</p>
                   </div>
 
-                  <!-- Excerpt -->
+                  &lt;!&ndash; Excerpt &ndash;&gt;
                   <h3 class="font-weight-bold dark-grey-text mb-3">
-                    <h4 routerLink="/article_details">Africa: Global Technology Leaders primed to discuss Enabling
-                      Technology and All Things Cloud at #NerdsUnite2020</h4>
+                    <h4 routerLink="/article_details"></h4>
                   </h3>
-                  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">LAGOS, Nigeria, January 31, 2020/ — Over 500 IT
-                    professionals from enterprise organizations
-                    across West Africa will convene in Lagos on February 21, 2020 for MainOne’s 5th annual gathering of
-                    its flagship event, Nerds Unite,
-                    themed: “Enabling the Digital Economy”.
-
-                    This year’s event will showcase the launch of its Managed Cloud Services in partnership with
-                    Microsoft and Hewlett Packard Enterprise
-                    Operated by Selectium. The event will feature presentations and panel discussions on Cloud adoption,
-                    Cloud migration and all things Cloud with MainOne (MainOne.net) and its global partners.</p>
+                  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4"></p>
 
 
                   <button type="button" class="btn btn-slack btn-rounded" routerLink="/article_details"><i
                     class="fas fa-angle-double-right"></i> Read More
                   </button>
 
-                </div>
-                <!-- Featured news -->
+
+                &lt;!&ndash; Featured news &ndash;&gt;
 
               </div>
-              <!-- Grid column -->
+              &lt;!&ndash; Grid column &ndash;&gt;
+              </div>
+              &lt;!&ndash; Grid column &ndash;&gt;
 
-              <!-- Grid column -->
+
+              <div *ngFor="let article of articles" >
+
               <div class="col-lg-6 col-md-12">
 
-                <!-- Small news -->
+                &lt;!&ndash; Small news &ndash;&gt;
                 <div class="single-news mb-4">
 
-                  <!-- Grid row -->
-                  <div class="row" *ngFor="let article of articles">
+                  &lt;!&ndash; Grid row &ndash;&gt;
+                &lt;!&ndash;  <div class="row" *ngFor="let article of articles">&ndash;&gt;
 
-                    <!-- Grid column -->
+                    &lt;!&ndash; Grid column &ndash;&gt;
                     <div class="col-md-3">
 
-                      <!--Image-->
+                      &lt;!&ndash;Image&ndash;&gt;
                       <div class="view overlay rounded z-depth-1 mb-4">
                         <img class="img-fluid" src="../../../assets/img_art/a2.jpg" alt="Sample image">
                         <a>
@@ -130,12 +573,17 @@
                       </div>
 
                     </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
+                    &lt;!&ndash; Grid column &ndash;&gt;
+                  <a class="badge badge-warning" routerLink="/article_details/{{ article.idArticle }}">
+                    Edit
+                  </a>
+                  <a routerLink="article_details">
+                    <i class="fa fa-angle-double-right"  ></i>   aa  <a  [routerLink]="['/article_details' +article.idArticle ]" class="dark-grey-text"></a>
+                  </a>
+                    &lt;!&ndash; Grid column &ndash;&gt;
                     <div class="col-md-9">
 
-                      <!-- Excerpt -->                           <div  *ngFor ="let art of article.contentDetails">
+           &lt;!&ndash;           &lt;!&ndash; Excerpt &ndash;&gt;    <div  *ngFor ="let art of article.contentDetails">
 
                     <p class="font-weight-bold dark-grey-text"> {{art.titre}}</p>
 
@@ -143,25 +591,25 @@
                         <div class="col-11 text-truncate pl-0 mb-3">
                           <a routerLink="article_details" class="dark-grey-text"> </a>
                           {{art.content}} </div>
-                        <!--  <div  *ngFor ="let art of article.tags">
-                          {{art.libelle}} {{article.author.surname}}</div>-->
+                        &lt;!&ndash;  <div  *ngFor ="let art of article.tags">
+                          {{art.libelle}} {{article.author.surname}}</div>&ndash;&gt;
 
                       </div>
-
+                    </div>&ndash;&gt;
                         <a routerLink="article_details">
-                          <i class="fa fa-angle-double-right"></i>     <a routerLink="article_details" class="dark-grey-text"></a>
+                          <i class="fa fa-angle-double-right"  ></i>   bbbbb<a  [routerLink]="['/article_details', article.idArticle]" class="dark-grey-text"></a>
                         </a>
-                      </div>
+
 
                     </div>
-                    <!-- Grid column -->
-                  </div>
-                  <!-- Grid row -->
-                </div>
-                <!-- Small news -->
+                    &lt;!&ndash; Grid column &ndash;&gt;
 
-                <!-- Small news -->
-                <!--         <div class="single-news mb-4">
+                  &lt;!&ndash; Grid row &ndash;&gt;
+                </div>
+                &lt;!&ndash; Small news &ndash;&gt;
+
+                &lt;!&ndash; Small news &ndash;&gt;
+                &lt;!&ndash;         <div class="single-news mb-4">
 
                   &lt;!&ndash; Grid row &ndash;&gt;
                   <div class="row">
@@ -248,10 +696,10 @@
                   &lt;!&ndash; Grid row &ndash;&gt;
 
                 </div>
-                &lt;!&ndash; Small news &ndash;&gt;-->
+                &lt;!&ndash; Small news &ndash;&gt;&ndash;&gt;
 
-                <!-- Small news -->
-                <!--    <div class="single-news">
+                &lt;!&ndash; Small news &ndash;&gt;
+                &lt;!&ndash;    <div class="single-news">
 
                   &lt;!&ndash; Grid row &ndash;&gt;
                   <div class="row">
@@ -290,277 +738,241 @@
                   </div>
                   &lt;!&ndash; Grid row &ndash;&gt;
 
-                </div>-->
+                </div>&ndash;&gt;
 
+  </div>
 
-              </div>
-
+</div>
             </div>
-            <!-- Grid row -->
+            &lt;!&ndash; Grid row &ndash;&gt;
 
           </section>
-          <!--Section: Magazine v.2-->
+          &lt;!&ndash;Section: Magazine v.2&ndash;&gt;
 
         </div>
       </div>
-      <!-- Magazine newsfeed v.2 -->
+      &lt;!&ndash; Magazine newsfeed v.2 &ndash;&gt;
+
+  <div class="row">
+     <div class="col-md-12 mx-auto">
+
+       <section class="magazine-section my-5">
+
+         <h4 class="font-weight-normal pink-lighter-hover mb-2"> Sport </h4>
+         <div class="progress md-progress">
+           <div class="progress-bar pink " role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                aria-valuemax="100"></div>
+         </div>
 
 
-      <!-- Magazine newsfeed v.2 -->
-      <div class="row">
-        <div class="col-md-12 mx-auto">
-
-          <!--Section: Magazine v.2-->
-          <section class="magazine-section my-5">
-
-            <h4 class="font-weight-normal pink-lighter-hover mb-2"> Sport </h4>
-            <div class="progress md-progress">
-              <div class="progress-bar pink " role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                   aria-valuemax="100"></div>
-            </div>
-
-            <!-- Grid row -->
-            <div class="row">
+         <div class="row">
 
 
-              <!-- Grid column -->
-              <div class="col-lg-6 col-md-12">
 
-                <!-- Featured news -->
-                <div class="single-news mb-lg-0 mb-4">
+           <div class="col-lg-6 col-md-12">
 
-                  <!-- Image -->
-                  <div class="view overlay rounded z-depth-1-half mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
-                    <a>
-                      <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
-                    </a>
-                  </div>
 
-                  <!-- Data -->
-                  <div class="news-data d-flex justify-content-between">
-                    <a href="#!" class="deep-orange-text">
-                      <h6 class="font-weight-bold">
-                        <i class="fa fa-cutlery pr-2"></i>Culinary</h6>
-                    </a>
-                    <p class="font-weight-bold dark-grey-text">
-                      <i class="fa fa-clock-o pr-2"></i>27/02/2018</p>
-                  </div>
+             <div class="single-news mb-lg-0 mb-4">
 
-                  <!-- Excerpt -->
-                  <h3 class="font-weight-bold dark-grey-text mb-3">
-                    <a>Title of the news</a>
-                  </h3>
-                  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">Sed ut perspiciatis unde voluptatem omnis iste natus
-                    error
-                    sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    explicabo.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
 
-                  <button type="button" class="btn btn-slack btn-rounded" routerLink="/article_details"><i
-                    class="fas fa-angle-double-right"></i> Read More
-                  </button>
+               <div class="view overlay rounded z-depth-1-half mb-4">
+                 <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
+                 <a>
+                   <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                 </a>
+               </div>
 
-                </div>
-                <!-- Featured news -->
 
-              </div>
-              <!-- Grid column -->
+               <div class="news-data d-flex justify-content-between">
+                 <a href="#!" class="deep-orange-text">
+                   <h6 class="font-weight-bold">
+                     <i class="fa fa-cutlery pr-2"></i>Culinary</h6>
+                 </a>
+                 <p class="font-weight-bold dark-grey-text">
+                   <i class="fa fa-clock-o pr-2"></i>27/02/2018</p>
+               </div>
 
-              <!-- Grid column -->
-              <div class="col-lg-6 col-md-12">
 
-                <!-- Small news -->
-                <div class="single-news mb-4">
+               <h3 class="font-weight-bold dark-grey-text mb-3">
+                 <a>Title of the news</a>
+               </h3>
+               <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">Sed ut perspiciatis unde voluptatem omnis iste natus
+                 error
+                 sit voluptatem accusantium doloremque laudantium,
+                 totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                 explicabo.
+                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
 
-                  <!-- Grid row -->
-                  <div class="row">
+               <button type="button" class="btn btn-slack btn-rounded" routerLink="/article_details"><i
+                 class="fas fa-angle-double-right"></i> Read More
+               </button>
 
-                    <!-- Grid column -->
-                    <div class="col-md-3">
+             </div>
 
-                      <!--Image-->
-                      <div class="view overlay rounded z-depth-1 mb-4">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
-                             alt="Sample image">
-                        <a>
-                          <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
-                        </a>
-                      </div>
+           </div>
 
-                    </div>
-                    <!-- Grid column -->
+           <div class="col-lg-6 col-md-12">
 
-                    <!-- Grid column -->
-                    <div class="col-md-9">
 
-                      <!-- Excerpt -->
-                      <p class="font-weight-bold dark-grey-text">26/02/2018</p>
-                      <div class="d-flex justify-content-between">
-                        <div class="col-11 text-truncate pl-0 mb-3">
-                          <a href="#!" class="dark-grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus
-                            qui blanditiis</a>
-                        </div>
-                        <a>
-                          <i class="fa fa-angle-double-right"></i>
-                        </a>
-                      </div>
+             <div class="single-news mb-4">
 
-                    </div>
-                    <!-- Grid column -->
 
-                  </div>
-                  <!-- Grid row -->
+               <div class="row">
 
-                </div>
-                <!-- Small news -->
 
-                <!-- Small news -->
-                <div class="single-news mb-4">
+                 <div class="col-md-3">
 
-                  <!-- Grid row -->
-                  <div class="row">
 
-                    <!-- Grid column -->
-                    <div class="col-md-3">
+                   <div class="view overlay rounded z-depth-1 mb-4">
+                     <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
+                          alt="Sample image">
+                     <a>
+                       <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                     </a>
+                   </div>
 
-                      <!--Image-->
-                      <div class="view overlay rounded z-depth-1 mb-4">
-                        <img class="img-fluid"
-                             src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg"
-                             alt="Sample image">
-                        <a>
-                          <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
-                        </a>
-                      </div>
+                 </div>
 
-                    </div>
-                    <!-- Grid column -->
+                 <div class="col-md-9">
 
-                    <!-- Grid column -->
-                    <div class="col-md-9">
 
-                      <!-- Excerpt -->
-                      <p class="font-weight-bold dark-grey-text">25/02/2018</p>
-                      <div class="d-flex justify-content-between">
-                        <div class="col-11 text-truncate pl-0 mb-3">
-                          <a href="#!" class="dark-grey-text">Itaque earum rerum hic tenetur a sapiente delectus</a>
-                        </div>
-                        <a>
-                          <i class="fa fa-angle-double-right"></i>
-                        </a>
-                      </div>
+                   <p class="font-weight-bold dark-grey-text">26/02/2018</p>
+                   <div class="d-flex justify-content-between">
+                     <div class="col-11 text-truncate pl-0 mb-3">
+                       <a href="#!" class="dark-grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus
+                         qui blanditiis</a>
+                     </div>
+                     <a>
+                       <i class="fa fa-angle-double-right"></i>
+                     </a>
+                   </div>
 
-                    </div>
-                    <!-- Grid column -->
+                 </div>
 
-                  </div>
-                  <!-- Grid row -->
+               </div>
 
-                </div>
-                <!-- Small news -->
+             </div>
 
-                <!-- Small news -->
-                <div class="single-news mb-4">
+             <div class="single-news mb-4">
 
-                  <!-- Grid row -->
-                  <div class="row">
 
-                    <!-- Grid column -->
-                    <div class="col-md-3">
+               <div class="row">
 
-                      <!--Image-->
-                      <div class="view overlay rounded z-depth-1 mb-4">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/87.jpg"
-                             alt="Sample image">
-                        <a>
-                          <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
-                        </a>
-                      </div>
 
-                    </div>
-                    <!-- Grid column -->
+                 <div class="col-md-3">
 
-                    <!-- Grid column -->
-                    <div class="col-md-9">
 
-                      <!-- Excerpt -->
-                      <p class="font-weight-bold dark-grey-text">24/02/2018</p>
-                      <div class="d-flex justify-content-between">
-                        <div class="col-11 text-truncate pl-0 mb-3">
-                          <a href="#!" class="dark-grey-text">Soluta nobis est eligendi optio cumque nihil impedit quo
-                            minus</a>
-                        </div>
-                        <a>
-                          <i class="fa fa-angle-double-right"></i>
-                        </a>
-                      </div>
+                   <div class="view overlay rounded z-depth-1 mb-4">
+                     <img class="img-fluid"
+                          src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg"
+                          alt="Sample image">
+                     <a>
+                       <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                     </a>
+                   </div>
 
-                    </div>
-                    <!-- Grid column -->
+                 </div>
 
-                  </div>
-                  <!-- Grid row -->
+                 <div class="col-md-9">
 
-                </div>
-                <!-- Small news -->
 
-                <!-- Small news -->
-                <div class="single-news">
+                   <p class="font-weight-bold dark-grey-text">25/02/2018</p>
+                   <div class="d-flex justify-content-between">
+                     <div class="col-11 text-truncate pl-0 mb-3">
+                       <a href="#!" class="dark-grey-text">Itaque earum rerum hic tenetur a sapiente delectus</a>
+                     </div>
+                     <a>
+                       <i class="fa fa-angle-double-right"></i>
+                     </a>
+                   </div>
 
-                  <!-- Grid row -->
-                  <div class="row">
+                 </div>
 
-                    <!-- Grid column -->
-                    <div class="col-md-3">
+               </div>
 
-                      <!--Image-->
-                      <div class="view overlay rounded z-depth-1 mb-md-0 mb-4">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg"
-                             alt="Sample image">
-                        <a>
-                          <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
-                        </a>
-                      </div>
+             </div>
 
-                    </div>
-                    <!-- Grid column -->
+             <div class="single-news mb-4">
 
-                    <!-- Grid column -->
-                    <div class="col-md-9">
 
-                      <!-- Excerpt -->
-                      <p class="font-weight-bold dark-grey-text">23/02/2018</p>
-                      <div class="d-flex justify-content-between">
-                        <div class="col-11 text-truncate pl-0 mb-lg-3">
-                          <a href="#!" class="dark-grey-text">Duis aute irure dolor in reprehenderit in voluptate</a>
-                        </div>
-                        <a>
-                          <i class="fa fa-angle-double-right"></i>
-                        </a>
-                      </div>
+               <div class="row">
 
-                    </div>
-                    <!-- Grid column -->
 
-                  </div>
-                  <!-- Grid row -->
+                 <div class="col-md-3">
 
-                </div>
-                <!-- Small news -->
 
-              </div>
-              <!--Grid column-->
+                   <div class="view overlay rounded z-depth-1 mb-4">
+                     <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/87.jpg"
+                          alt="Sample image">
+                     <a>
+                       <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                     </a>
+                   </div>
 
-            </div>
-            <!-- Grid row -->
+                 </div>
 
-          </section>
-          <!--Section: Magazine v.2-->
+                 <div class="col-md-9">
 
-        </div>
-      </div>
+
+                   <p class="font-weight-bold dark-grey-text">24/02/2018</p>
+                   <div class="d-flex justify-content-between">
+                     <div class="col-11 text-truncate pl-0 mb-3">
+                       <a href="#!" class="dark-grey-text">Soluta nobis est eligendi optio cumque nihil impedit quo
+                         minus</a>
+                     </div>
+                     <a>
+                       <i class="fa fa-angle-double-right"></i>
+                     </a>
+                   </div>
+
+                 </div>
+
+               </div>
+
+             </div>
+
+             <div class="single-news">
+
+               <div class="row">
+
+                 <div class="col-md-3">
+
+                   <div class="view overlay rounded z-depth-1 mb-md-0 mb-4">
+                     <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg"
+                          alt="Sample image">
+                     <a>
+                       <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+                     </a>
+                   </div>
+
+                 </div>
+
+                 <div class="col-md-9">
+
+                   <p class="font-weight-bold dark-grey-text">23/02/2018</p>
+                   <div class="d-flex justify-content-between">
+                     <div class="col-11 text-truncate pl-0 mb-lg-3">
+                       <a href="#!" class="dark-grey-text">Duis aute irure dolor in reprehenderit in voluptate</a>
+                     </div>
+                     <a>
+                       <i class="fa fa-angle-double-right"></i>
+                     </a>
+                   </div>
+                 </div>
+
+               </div>
+             </div>
+
+           </div>
+
+         </div>
+
+       </section>
+
+     </div>
+   </div>-->
+  <!-- Magazine newsfeed v.2 -->
+
       <!-- Magazine newsfeed v.2 -->
 
       <hr class="my-5">

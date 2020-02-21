@@ -110,7 +110,7 @@ import {CommonModule} from '@angular/common';
 import {MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
 import {AcceuilComponent} from '../../acceuil/acceuil.component';
 import {DashboardComponent} from '../../dashboard/dashboard.component';
-import {ArticleDetailsComponent} from '../../Article_property/article-details/article-details.component';
+import {ArticleDetailsComponent} from '../../article-details/article-details.component';
 import {MenuComponent} from '../../menu/menu.component';
 import {FootersComponent} from '../../footers/footers.component';
 import {ArticleCategorieComponent} from '../../Article_property/article-categorie/article-categorie.component';
@@ -288,7 +288,9 @@ const routes: Routes = [
 
 
   //Article_property
+/*
   {path : 'article_details', component: ArticleDetailsComponent } ,
+*/
   {path : 'article_categorie', component: ArticleCategorieComponent } ,
   //Journaliste
   {path : 'auteur', component: AuteurComponent } ,
@@ -305,8 +307,12 @@ const routes: Routes = [
   //Moderateur
   { path: 'menu_mod', component: MenuModComponent },
 
-  { path: 'inscrit_app', component: InscritAppComponent },
-
+  { path: 'inscrit_app', component: InscritAppComponent ,
+    children: [
+      {
+        path: 'article_details/:idArticle' ,
+        component: ArticleDetailsComponent
+      }]},
 
   { path: 'article_app', component: ArticleAppComponent },
   { path: 'article_supp', component: ArtcileSuppComponent },
@@ -316,15 +322,48 @@ const routes: Routes = [
   { path: 'm_redaction', component: MRedactionComponent },
   { path: 'm_login', component: MLoginComponent },
 
+  {
+    path: 'article_details/:idArticle' ,
+    component: ArticleDetailsComponent
+  },
+
+  {
+    path: 'article_details' ,
+    component: ArticleDetailsComponent,
+    children: [
+      {
+        path: 'auteur/:idUser' ,
+        component: AuteurComponent
+      }]
+  },
+
+  {
+    path: 'article_details' ,
+    component: ArticleDetailsComponent},
 
   { path: 'j_dashboard', component: JDashboardComponent,
     children: [
       {
         path: 'j_liste/:idUser' ,
         component : JListeComponent
-      }]}
+      }]},
 
+  { path:  'acceuil', component: AcceuilComponent,
+    children: [
+      {
+        path: 'article_details/:idArticle' ,
+       component: ArticleDetailsComponent
+      }]
+  },
 
+  {
+    path: 'auteur' ,
+    component: AuteurComponent
+  },
+  {
+    path: 'auteur/:idUser' ,
+    component: AuteurComponent
+  }
 ];
 
 @NgModule({

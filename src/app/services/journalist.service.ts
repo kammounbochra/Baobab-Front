@@ -16,6 +16,8 @@ export class JournalistService  {
 
 
   private baseUrl = 'http://localhost:8080/journalist/auth';
+
+  private baseURl = 'http://localhost:8080/api/journalist' ;
   constructor(private http: HttpClient) {
   }
 
@@ -40,15 +42,19 @@ export class JournalistService  {
   }
 
 
-  Update(id: any, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}` + `/changeStatus/${id}`, value , httpOptions);
+  Update(idUser: number, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrl}/changeStatus/${idUser}`, value , httpOptions);
   }
 
 
-  updateJ(idUser: any, value: any): Observable<Object> {
+  updateJ(idUser: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}` + `/j/` + idUser, value);
   }
 
+
+  get( id: number) {
+    return this.http.get(`${this.baseURl}/edit/${id}`);
+  }
 
   /* signUp(info:JournalistSignup):Observable<string>{
      return this.http.post<string>(this.signupUrl,info,httpOptions)

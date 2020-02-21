@@ -20,7 +20,7 @@ private ContentDetails: ContentDetails;
     return this.http.post(this.baseURL + 'addArticle', Article, contentDetails );
   }
   DeleteArticle(id: number ): Observable<Object> {
-    return this.http.delete(this.baseURL+ id);
+    return this.http.delete(this.baseURL + id);
   }
   getAll(): Observable <Object> {
     return this.http.get(this.baseURL);
@@ -30,4 +30,34 @@ private ContentDetails: ContentDetails;
   getArticleList() {
     return this.http.get<Article[]>(`${this.baseURL}` , httpOptions );
   }
+
+  editArticle(idArticle: any): Observable<any> {
+
+    return this.http.get(`${this.baseURL}edit/${idArticle}`);
+  }
+  getArticleId(idArticle: any): Observable<any> {
+
+    return this.http.get(`${this.baseURL}${idArticle}`);
+  }
+  //  return this.http.get(`${this.baseUrl}/${id}`).pipe(map(pp => pp));}
+  get(id) {
+    return this.http.get(`${this.baseURL}${id}`);
+  }
+
+  getLifestyle() {
+    return this.http.get<Article[]>(`${this.baseURL}ByCatlifestyle`);
+  }
+
+  getTechnologie() {
+    return this.http.get<Article[]>(`${this.baseURL}ByCattech`);
+  }
+
+  getEntreprise() {
+    return this.http.get<Article[]>(`${this.baseURL}ByCatEntreprise`);
+  }
+
+  getEconomie() {
+    return this.http.get<Article[]>(`${this.baseURL}ByCatEco`);
+  }
+
 }

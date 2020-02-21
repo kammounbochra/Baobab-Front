@@ -1,3 +1,95 @@
-<p>
-  a-login works!
-</p>
+
+<div class="container">
+  <div class="row">
+    <div class=" car col-md-12 mx-auto">
+
+      <div>
+
+
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+
+          <!--Section: Live preview-->
+          <section class="form-dark">
+
+            <!--Form without header-->
+            <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table7.jpg');">
+              <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+
+                <!--Header-->
+                <div class="text-center">
+                  <h3 class="white-text mb-5 mt-4 font-weight-bold">
+                    <strong>SIGN Modérateur</strong>
+                    <a class="green-text font-weight-bold">
+                      <strong> UP</strong>
+                    </a>
+                  </h3>
+                </div>
+
+                <!--Body-->
+                <form [formGroup]="testForm"  (ngSubmit)="onSubmit()">
+
+
+
+                  <div class="col-md-12">
+                    <div class="md-form mb-0">
+                      <input  type="text" class="form-control"  formControlName="username" placeholder="Email" [(ngModel)]="moderator.username"
+                              id="username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                        <div *ngIf="f.username.errors.email"><U></U>sername must be a valid email address</div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="col-md-12">
+                    <div class="md-form mb-0">
+                      <input  type="text" class="form-control"  formControlName="password" placeholder="password"      [(ngModel)]="moderator.password"
+                              id="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+
+                <!--Grid row-->
+                <div class="row d-flex align-items-center mb-4">
+
+                  <!--Grid column-->
+                  <div class="text-center mb-3 col-md-12">
+                    <button  type="button" mdbBtn color="success" block="true" rounded="true" class="z-depth-1 waves-light" (click)="signin()" mdbWavesEffect>Sign in</button>
+                  </div>
+                  <!--Grid column-->
+                </div>
+                <!--Grid row-->
+
+                <!--Grid column-->
+                <div class="col-md-12">
+                  <p class="font-small white-text d-flex justify-content-end">Have an account?
+                    <a routerLink="/j_dashboard" class="green-text ml-1 font-weight-bold"> Log in</a>
+                  </p>
+                </div>
+                <!--Grid column-->
+
+              </div>
+            </div>
+            <!--/Form without header-->
+          </section>
+          <!--Section: Live preview-->
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

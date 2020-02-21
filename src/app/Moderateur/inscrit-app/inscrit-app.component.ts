@@ -78,7 +78,7 @@ private a  ;
       this.journalisteService.getEncours().subscribe((next: any) => {
         next.forEach((element: any) => {
           this.tableData.push({  id: element.id,
-            idUser: Number(element.idUser ),
+            idUser: element.idUser,
             name: element.name ,
             surname: element.surname ,
             dateNaissance: element.dateNaissance ,
@@ -193,7 +193,8 @@ private a  ;
   }
 
 
-  updateE(idUser: any) {
+  update(idUser: any) {
+
     this.journalisteService.Update(this.journaliste.idUser,
       {name: this.journaliste.name,
         status: this.journaliste.status} ).subscribe(data => {
@@ -202,13 +203,13 @@ private a  ;
     }); }
 
 
-  update(idUser: any) {
+  updateJ(idUser: number) {
     this.journalisteService.updateJ(this.journaliste.idUser,
       {name: this.journaliste.name,
         status: this.journaliste.status  = this.etat} ).subscribe(data => {
       console.log(data);
       this.journaliste = data as JournalistSignup;
-      this._router.navigate(['/j_liste']);
+    //  this._router.navigate(['/article_details']);
     }); }
 
 /*  update(id: number) {

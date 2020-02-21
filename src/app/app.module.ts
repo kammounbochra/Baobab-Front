@@ -132,7 +132,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { QuillModule } from 'ngx-quill';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import { ArticleDetailsComponent } from './Article_property/article-details/article-details.component';
+import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { MenuComponent } from './menu/menu.component';
 import { FootersComponent } from './footers/footers.component';
 import { ArticlePaysComponent } from './Article_property/article-pays/article-pays.component';

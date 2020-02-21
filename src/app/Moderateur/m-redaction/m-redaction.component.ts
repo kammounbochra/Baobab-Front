@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Article} from '../../models/Article';
 import {Country} from '../../models/Country';
+import {Category} from '../../models/Category';
+import {CategoryService} from '../../services/category.service';
 
 @Component({
   selector: 'app-m-redaction',
@@ -20,10 +22,11 @@ export class MRedactionComponent implements OnInit {
   @Input()countries: Country;
   countrys: Country[];
   optionsSelect: Array<any>;
-
+  @Input() cat: Category;
+  categorys: Category[];
   f: FormGroup;
 
-  constructor() {}
+  constructor( private categoryService : CategoryService) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -38,7 +41,9 @@ export class MRedactionComponent implements OnInit {
       { value: 'Feature request', label: 'Feature request' },
       { value: 'Other stuff', label: 'Other stuff' },
     ];
-
+    this.categoryService.getCategoryList().subscribe(dat => {
+      this.categorys = dat;  console.log(dat) ;
+    });
   }
 
   onEditorBlured(quill) {
