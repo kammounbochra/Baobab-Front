@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ArticleService} from '../services/article.service';
-import {Article} from '../models/Article';
+import {ArticleService} from '../../services/article.service';
+import {Article} from '../../models/Article';
 import {Observable} from 'rxjs';
-import {CategoryService} from '../services/category.service';
-import {Category} from '../models/Category';
+import {CategoryService} from '../../services/category.service';
+import {Category} from '../../models/Category';
 
 @Component({
   selector: 'app-acceuil',

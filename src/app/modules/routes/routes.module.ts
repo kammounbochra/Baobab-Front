@@ -108,11 +108,11 @@ import { IntroMinimalisticComponent } from '../../components/sections/intros-sec
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
-import {AcceuilComponent} from '../../acceuil/acceuil.component';
-import {DashboardComponent} from '../../dashboard/dashboard.component';
-import {ArticleDetailsComponent} from '../../article-details/article-details.component';
-import {MenuComponent} from '../../menu/menu.component';
-import {FootersComponent} from '../../footers/footers.component';
+import {AcceuilComponent} from '../../Component/acceuil/acceuil.component';
+import {DashboardComponent} from '../../Component/dashboard/dashboard.component';
+import {ArticleDetailsComponent} from '../../Component/article-details/article-details.component';
+import {MenuComponent} from '../../Component/menu/menu.component';
+import {FootersComponent} from '../../Component/footers/footers.component';
 import {ArticleCategorieComponent} from '../../Article_property/article-categorie/article-categorie.component';
 import {AuteurComponent} from '../../Journaliste/auteur/auteur.component';
 import {JSignUpComponent} from '../../Journaliste/j-sign-up/j-sign-up.component';
@@ -129,6 +129,10 @@ import {ArticleAppComponent} from '../../Moderateur/article-app/article-app.comp
 import {JDashboardComponent} from '../../Journaliste/j-dashboard/j-dashboard.component';
 import {JProfilComponent} from '../../Journaliste/j-profil/j-profil.component';
 import {JArticleComponent} from '../../Journaliste/j-article/j-article.component';
+import {ArtEcoComponent} from '../../Component/art-eco/art-eco.component';
+import {ArtEntrepriseComponent} from '../../Component/art-entreprise/art-entreprise.component';
+import {ArtLifeComponent} from '../../Component/art-life/art-life.component';
+import {ArtTechComponent} from '../../Component/art-tech/art-tech.component';
 const routes: Routes = [
 /*
   { path: ' ', component: RFNComponent },
@@ -276,13 +280,21 @@ const routes: Routes = [
   },
 
   { path: 'menu', component: MenuComponent },
+  {path: 'art_eco' , component: ArtEcoComponent},
+  {path: 'art_entreprise' , component: ArtEntrepriseComponent},
+  {path: 'art_life' , component: ArtLifeComponent},
+  {path: 'art_tech' , component: ArtTechComponent},
+
+
   {path : 'dashboard', component: DashboardComponent} ,
-  {path : 'acceuil', component: AcceuilComponent },
+
   {path : 'dashboard', component: DashboardComponent ,
     children: [
       {path : 'u_login', component: ULoginComponent }    ]
   },
   { path: 'footers', component: FootersComponent },
+  {path : 'acceuil', component: AcceuilComponent },
+
 
   { path: 'redaction', component: RedactionComponent },
 

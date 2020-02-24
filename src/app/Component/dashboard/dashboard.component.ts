@@ -1,6 +1,6 @@
 import {Component, OnInit, Renderer2, Inject, OnDestroy, ViewEncapsulation, AfterViewInit} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import {SharedService} from '../shared/shared.service';
+import {SharedService} from '../../shared/shared.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

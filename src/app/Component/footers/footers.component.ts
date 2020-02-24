@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {JournalistLogin} from '../models/Journalist-login';
+import {JournalistLogin} from '../../models/Journalist-login';
 import {Observable} from 'rxjs';
-import {JournalistService} from '../services/journalist.service';
+import {JournalistService} from '../../services/journalist.service';
 import {CompleterData, IMyOptions, MDBDatePickerComponent, ToastService} from 'ng-uikit-pro-standard';
 import {Router} from '@angular/router';
-import {JournalistSignup} from '../models/Journalist-signup';
+import {JournalistSignup} from '../../models/Journalist-signup';
 
 @Component({
   selector: 'app-footers',

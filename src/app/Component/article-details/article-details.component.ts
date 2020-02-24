@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Article} from '../models/Article';
-import {ArticleService} from '../services/article.service';
+import {Article} from '../../models/Article';
+import {ArticleService} from '../../services/article.service';
 import {Subscription} from 'rxjs';
 
 @Component({

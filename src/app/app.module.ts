@@ -130,11 +130,11 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { NavComponent } from './components/nav/nav.component';
 import { QuillModule } from 'ngx-quill';
-import { AcceuilComponent } from './acceuil/acceuil.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import { ArticleDetailsComponent } from './article-details/article-details.component';
-import { MenuComponent } from './menu/menu.component';
-import { FootersComponent } from './footers/footers.component';
+import { AcceuilComponent } from './Component/acceuil/acceuil.component';
+import {DashboardComponent} from './Component/dashboard/dashboard.component';
+import { ArticleDetailsComponent } from './Component/article-details/article-details.component';
+import { MenuComponent } from './Component/menu/menu.component';
+import { FootersComponent } from './Component/footers/footers.component';
 import { ArticlePaysComponent } from './Article_property/article-pays/article-pays.component';
 import { ArticleCategorieComponent } from './Article_property/article-categorie/article-categorie.component';
 import { RedactionComponent } from './Journaliste/redaction/redaction.component';
@@ -157,6 +157,10 @@ import { ARedactionComponent } from './Admin/a-redaction/a-redaction.component';
 import { MLoginComponent } from './Moderateur/m-login/m-login.component';
 import { MenuJComponent } from './Journaliste/menu-j/menu-j.component';
 import { JArticleComponent } from './Journaliste/j-article/j-article.component';
+import { ArtEcoComponent } from './Component/art-eco/art-eco.component';
+import { ArtLifeComponent } from './Component/art-life/art-life.component';
+import { ArtTechComponent } from './Component/art-tech/art-tech.component';
+import { ArtEntrepriseComponent } from './Component/art-entreprise/art-entreprise.component';
 
 
 @core.NgModule({
@@ -304,6 +308,10 @@ import { JArticleComponent } from './Journaliste/j-article/j-article.component';
     MLoginComponent,
     MenuJComponent,
     JArticleComponent,
+    ArtEcoComponent,
+    ArtLifeComponent,
+    ArtTechComponent,
+    ArtEntrepriseComponent,
 
 
   ],
