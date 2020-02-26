@@ -113,7 +113,7 @@ import {DashboardComponent} from '../../Component/dashboard/dashboard.component'
 import {ArticleDetailsComponent} from '../../Component/article-details/article-details.component';
 import {MenuComponent} from '../../Component/menu/menu.component';
 import {FootersComponent} from '../../Component/footers/footers.component';
-import {ArticleCategorieComponent} from '../../Article_property/article-categorie/article-categorie.component';
+import {ArticleCategorieComponent} from '../../Component/article-categorie/article-categorie.component';
 import {AuteurComponent} from '../../Journaliste/auteur/auteur.component';
 import {JSignUpComponent} from '../../Journaliste/j-sign-up/j-sign-up.component';
 import {ULoginComponent} from '../../Utilisateur/u-login/u-login.component';
@@ -133,6 +133,7 @@ import {ArtEcoComponent} from '../../Component/art-eco/art-eco.component';
 import {ArtEntrepriseComponent} from '../../Component/art-entreprise/art-entreprise.component';
 import {ArtLifeComponent} from '../../Component/art-life/art-life.component';
 import {ArtTechComponent} from '../../Component/art-tech/art-tech.component';
+import {ArticleTags} from '../../models/Article_tags';
 const routes: Routes = [
 /*
   { path: ' ', component: RFNComponent },
@@ -285,6 +286,34 @@ const routes: Routes = [
   {path: 'art_life' , component: ArtLifeComponent},
   {path: 'art_tech' , component: ArtTechComponent},
 
+  {path: 'art_eco' , component: ArtEcoComponent,
+    children: [
+      {
+        path: 'article_details/:idArticle' ,
+        component: ArticleDetailsComponent
+      }]
+  },
+  {path: 'art_entreprise' , component: ArtEntrepriseComponent,
+    children: [
+      {
+        path: 'article_details/:idArticle' ,
+        component: ArticleDetailsComponent
+      }]
+  },
+  {path: 'art_life' , component: ArtLifeComponent,
+    children: [
+      {
+        path: 'article_details/:idArticle' ,
+        component: ArticleDetailsComponent
+      }]
+  },
+  {path: 'art_tech' , component: ArtTechComponent,
+    children: [
+      {
+        path: 'article_details/:idArticle' ,
+        component: ArticleDetailsComponent
+      }]
+  },
 
   {path : 'dashboard', component: DashboardComponent} ,
 
@@ -375,7 +404,10 @@ const routes: Routes = [
   {
     path: 'auteur/:idUser' ,
     component: AuteurComponent
-  }
+  },
+  { path: 'article_tags', component: ArticleTags },
+
+
 ];
 
 @NgModule({

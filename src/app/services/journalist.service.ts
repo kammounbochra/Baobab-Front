@@ -43,6 +43,7 @@ export class JournalistService  {
 
 
   Update(idUser: number, value: any): Observable<Object> {
+    console.log(typeof idUser);
     return this.http.put(`${this.baseUrl}/changeStatus/${idUser}`, value , httpOptions);
   }
 
@@ -54,6 +55,12 @@ export class JournalistService  {
 
   get( id: number) {
     return this.http.get(`${this.baseURl}/edit/${id}`);
+  }
+
+  getJ (journaliste: JournalistSignup ) {
+    return this.http.put(`${this.baseUrl}`, journaliste, {
+      headers: new HttpHeaders({'Authorization': sessionStorage.getItem('token')}),
+    });
   }
 
   /* signUp(info:JournalistSignup):Observable<string>{

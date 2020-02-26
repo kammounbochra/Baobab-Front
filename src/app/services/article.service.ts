@@ -59,5 +59,17 @@ private ContentDetails: ContentDetails;
   getEconomie() {
     return this.http.get<Article[]>(`${this.baseURL}ByCatEco`);
   }
+  get1Art() {
+    return this.http.get<Article[]>(`${this.baseURL}LastArticle`);
+  }
 
+  get4Art() {
+    return this.http.get<Article[]>(`${this.baseURL}Last4Article`);
+  }
+
+
+
+  getEncours() {
+    return this.http.get(`${this.baseURL}PendingArt`);
+  }
 }

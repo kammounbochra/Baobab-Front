@@ -19,6 +19,8 @@ export class AcceuilComponent implements OnInit {
   artEco: Article[];
   artEntreprise: Article[];
   artTech: Article[];
+  art1: Article[];
+  art4: Article[];
 
 
   @Input() cat: Category;
@@ -55,6 +57,17 @@ export class AcceuilComponent implements OnInit {
     this.articleService.getTechnologie().subscribe(dattec => {
       this.artTech = dattec;
       console.log('Technologie' , dattec) ;
+
+    });
+    this.articleService.get1Art().subscribe(dat1 => {
+      this.art1 = dat1;
+      console.log('1' , dat1) ;
+
+    });
+
+    this.articleService.get4Art().subscribe(dat4 => {
+      this.art4 = dat4;
+      console.log('4' , dat4) ;
 
     });
 }

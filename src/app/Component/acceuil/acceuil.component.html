@@ -64,13 +64,13 @@
                   </div>
 
 
-                  <div class="news-data d-flex justify-content-between">
+                  <div *ngFor="let a of art1" class="news-data d-flex justify-content-between">
                     <a href="#!" class="deep-orange-text">
                       <h6 class="font-weight-bold">
-                        <i class="fa fa-cutlery pr-2"></i>Culinary</h6>
+                        <i class="fa fa-cutlery pr-2"></i>{{a.contentDetails.titre}}</h6>
                     </a>
                     <p class="font-weight-bold dark-grey-text">
-                      <i class="fa fa-clock-o pr-2"></i>27/02/2018</p>
+                      <i class="fa fa-clock-o pr-2"></i>{{art1.date}}</p>
                   </div>
 
 
@@ -237,7 +237,7 @@
                       <p class="font-weight-bold dark-grey-text">{{ar.titre }}</p>
                       <div class="d-flex justify-content-between">
                         <div class="col-11 text-truncate pl-0 mb-3">
-                          <a href="#!" class="dark-grey-text">{{ar.content | slice : 0:55 }}}} </a>
+                          <a href="#!" class="dark-grey-text">{{ar.content | slice : 0:55 }} </a>
                         </div>
                       </div>
                       <a  routerLink="/article_details/{{artco.idArticle}}">
@@ -482,6 +482,7 @@
 
             </div>
             </div>
+
           </section>
 
         </div>
@@ -975,40 +976,12 @@
 
       <!-- Magazine newsfeed v.2 -->
 
-      <hr class="my-5">
+
 
     </div>
 
 
   </div>
 
-  <!-- <div class="col-md-2 mx-auto text-center mt-5">
-
-     FLASH DERNIER ACTUS <br>
-
-     &#45;&#45;&#45;&#45;&#45;&#45;AAAAAAAAAAAA <br>
-     -&#45;&#45;&#45;&#45;&#45;&#45;BBBBBBBB<br>
-     &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;CCCCCCCCCCCCCCC<br>
-     &#45;&#45;&#45;&#45;&#45;&#45;DDDDDDDDDDD<br>
-     FLASH DERNIER ACTUS <br>
-
-     &#45;&#45;&#45;&#45;&#45;&#45;AAAAAAAAAAAA <br>
-     -&#45;&#45;&#45;&#45;&#45;&#45;BBBBBBBB<br>
-     &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;CCCCCCCCCCCCCCC<br>
-     &#45;&#45;&#45;&#45;&#45;&#45;DDDDDDDDDDD<br>
-    Méteo <br>
-
-     &#45;&#45;&#45;&#45;&#45;&#45;AAAAAAAAAAAA <br>
-     -&#45;&#45;&#45;&#45;&#45;&#45;BBBBBBBB<br>
-     &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;CCCCCCCCCCCCCCC<br>
-     &#45;&#45;&#45;&#45;&#45;&#45;DDDDDDDDDDD<br>
-     FLASH DERNIER ACTUS <br>
-
-     &#45;&#45;&#45;&#45;&#45;&#45;AAAAAAAAAAAA <br>
-     -&#45;&#45;&#45;&#45;&#45;&#45;BBBBBBBB<br>
-     &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;CCCCCCCCCCCCCCC<br>
-     &#45;&#45;&#45;&#45;&#45;&#45;DDDDDDDDDDD<br>
-
-   </div>-->
 </div>
 <!-- Article sport -->

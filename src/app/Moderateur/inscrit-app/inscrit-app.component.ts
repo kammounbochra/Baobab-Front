@@ -63,6 +63,8 @@ private role: any ;
   private etat: 'valid';
 
 private a  ;
+  private namebt: any;
+  private str = 'Valid';
   constructor(private journalisteService: JournalistService,
               private fb: FormBuilder , private _router: Router) { }
 
@@ -186,37 +188,27 @@ private a  ;
 
   ngAfterViewInit(): void {
   }
-  remove(id: any) {
+/*  //remove(id: any) {
    // this.updateEtat(this.id);
           this.tableData.push(this.tableData[id]);
     this.tableData.splice(id, 1);
-  }
+  }*/
 
 
   update(idUser: any) {
 
-    this.journalisteService.Update(this.journaliste.idUser,
+    this.journalisteService.Update(idUser,
       {name: this.journaliste.name,
         status: this.journaliste.status} ).subscribe(data => {
       console.log(data);
       this.journaliste = data as JournalistSignup;
-    }); }
+    });
 
+  }
 
-  updateJ(idUser: number) {
-    this.journalisteService.updateJ(this.journaliste.idUser,
-      {name: this.journaliste.name,
-        status: this.journaliste.status  = this.etat} ).subscribe(data => {
-      console.log(data);
-      this.journaliste = data as JournalistSignup;
-    //  this._router.navigate(['/article_details']);
-    }); }
-
-/*  update(id: number) {
-    this.journalisteService.Update(this.journaliste.id).subscribe(data => {
-      console.log(data);
-      this.journaliste = data as JournalistSignup;
-    }); }*/
+  changeLabelName() {
+    this.namebt = this.str;
+  }
   addNewRow() {
     this.mdbTable.addRow({
       id: this.elements.length.toString(),
@@ -243,7 +235,19 @@ private a  ;
     });
   }
 
-  removeRow() {
+/*
+  removeRow1() {
+    this.mdbTable.removeRow1();
+    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
+      el.id = (index + 1).toString();
+    });
+    this.emitDataSourceChange();
+    this.mdbTable.rowRemoved().subscribe((data: any) => {
+      console.log(data);
+    });
+
+  }*/
+  removeRow2(idUser) {
     this.mdbTable.removeRow(1);
     this.mdbTable.getDataSource().forEach((el: any, index: any) => {
       el.id = (index + 1).toString();
@@ -255,6 +259,10 @@ private a  ;
 
   }
 
+  remove(id: any) {
+    this.tableData.push(this.tableData[id]);
+    this.tableData.splice(id, 1);
+  }
 
   emitDataSourceChange() {
     this.mdbTable.dataSourceChange().subscribe((data: any) => {
@@ -262,6 +270,16 @@ private a  ;
     });
   }
 
+  removeRow() {
+    this.mdbTable.removeRow(1);
+    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
+      el.id = (index + 1).toString();
+    });
+    this.emitDataSourceChange();
+    this.mdbTable.rowRemoved().subscribe((data: any) => {
+      console.log(data);
+    });
+  }
 
   add() {
     if (this.tableData.length > 0) {

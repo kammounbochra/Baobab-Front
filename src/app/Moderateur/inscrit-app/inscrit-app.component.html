@@ -2,20 +2,20 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto mt-5">
-      <h2 class="text-center">Angular Bootstrap Datatables</h2>
+
     </div>
   </div>
 
   <!-- Basic example -->
   <div class="row">
     <div class="col-md-12 mx-auto text-center mt-5">
-      <h4 class="text-center">Basic example</h4>
+
       <div class="card card-cascade narrower mt-5">
 
         <!--Card image-->
-        <div class="view view-cascade gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
+        <div class="view view-cascade gradient-card-header heavy-rain-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
 
-          <h4 class="white-text font-weight-bold text-uppercase mb-0">Advanced table</h4>
+          <h4 class="white-text font-weight-bold text-uppercase mb-0">Inscription</h4>
 
         </div>
 
@@ -90,15 +90,15 @@
               <td >
                 <span>
                 <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(data.id) ">Accept</button>
-                <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="update( data.idUser.param )" mdbWavesEffect>1   </button>
-                <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="updateJ( data.idUser )" mdbWavesEffect>2    </button></span>
-
+                <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="update( data.idUser )" (click)="changeLabelName()" id="bt" mdbWavesEffect>1   </button>
+             <!--   <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="removeRow1()" mdbWavesEffect>2    </button></span>
+                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove('data.id')">Remove</button>-->
 
                 <a class="badge badge-warning" click="/article_details/{{ data.id }}">
                   Edit
                 </a>
 
-
+                </span>
               </td>
             </tr>
             </tbody>
