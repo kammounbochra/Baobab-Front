@@ -1,4 +1,4 @@
-export class language{
-    id:any;
-    languagen:any;
+export class Language {
+    id: any;
+    languagen: any;
 }

@@ -1,135 +1,31 @@
-<!-- Editable table -->
-<div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
-  <div class="card-body">
-    <div id="table" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2">
-        <a class="text-success" (click)="add()">
-          <mdb-icon fas icon="plus" size="2x"></mdb-icon>
-        </a>
-      </span>
-    </div><!--
-      <table class="table table-bordered table-responsive-md table-striped text-center">
-        <tr>
-          <th class="text-center">Person Name</th>
-          <th class="text-center">Age</th>
-          <th class="text-center">Company Name</th>
-          <th class="text-center">Country</th>
-          <th class="text-center">City</th>
-          <th class="text-center">Sort</th>
-          <th class="text-center">Remove</th>
-        </tr>
-        <tr *ngFor="let person of personList; let id = index">
-          <td>
-            <span>{{person.name}}</span>
-          </td>
-          <td>
-            <span contenteditable="true" >{{person.dateNaissance}}</span>
-          </td>
-          <td>
-            <span contenteditable="true" >{{person.numtel}}</span>
-          </td>
-          <td>
-            <span contenteditable="true" >{{person.nationality}}</span>
-          </td>
-          <td>
-            <span contenteditable="true" >{{person.surname}}</span>
-          </td>
-         &lt;!&ndash; <td>
-            <span contenteditable="true" (keyup)="changeValue(id, 'city', $event)" (blur)="updateList(id, 'surname', $event)">{{person.surname}}</span>
-          </td>&ndash;&gt;
-          <td>
-            <span class="table-up">
-              <a class="indigo-text">
-                <mdb-icon fas icon="long-arrow-alt-up"></mdb-icon>
-              </a>
-            </span>
-            <span class="table-down">
-              <a class="indigo-text">
-                <mdb-icon fas icon="long-arrow-alt-down"></mdb-icon>
-              </a>
-            </span>
-          </td>
-          <td>
-            <span class="table-remove">
-                              <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="update( person.idUser )" mdbWavesEffect>1   </button>
+<div class="modal-dialog modal-notify modal-success" role="document">
+  <!--Content-->
+  <div class="modal-content">
+    <!--Header-->
+    <div class="modal-header">
+      <p class="heading lead">Journaliste</p>
 
-              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove('person.id')">Remove</button>
-            </span>
-          </td>
-        </tr>
-      </table>
--->
-    <table class="table table-hover table-responsive-md mb-0">
-
-      <!--Table head-->
-      <thead>
-      <tr>
-        <th scope="row">#</th>
-        <th class="th-lg">First Name</th>
-        <th class="th-lg">Last Name</th>
-        <th class="th-lg">Username</th>
-      </tr>
-      </thead>
-      <!--Table head-->
-
-      <!--Table body-->
-      <tbody>
-      <tr *ngFor="let data of personList; let i = index">
-        <th px-3 *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex" scope="row">{{data.id}}</th>
-        <td *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex">{{data.surname}}</td>
-        <td *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex">{{data.dateNaissance}}</td>
-        <td *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex">{{data.username}}</td>
-      </tr>
-      </tbody>
-      <!--Table body-->
-    </table>
-    <div class="d-flex justify-content-center">
-
-      <!--Pagination -->
-      <nav class="my-4 pt-2">
-        <ul class="pagination pagination-circle pg-purple mb-0">
-
-          <!--First-->
-          <li class="page-item clearfix d-none d-md-block" (click)="firstPage()" [ngClass]="{disabled: activePage == 1}">
-            <a class="page-link">First</a>
-          </li>
-
-          <!--Arrow left-->
-          <li class="page-item" (click)="previousPage()" [ngClass]="{disabled: activePage == 1}">
-            <a class="page-link" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-
-          <!--Numbers-->
-          <li #pages *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index" class="page-item"
-              [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
-            <a class="page-link waves-light" (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
-          </li>
-
-
-
-          <!--Arrow right-->
-          <li class="page-item" (click)="nextPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
-            <a class="page-link" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-
-          <!--First-->
-          <li class="page-item clearfix d-none d-md-block" (click)="lastPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
-            <a class="page-link">Last</a>
-          </li>
-
-        </ul>
-      </nav>
-      <!--/Pagination -->
-
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+        <span aria-hidden="true" class="white-text">&times;</span>
+      </button>
     </div>
 
+    <!--Body-->
+    <div class="modal-body">
+      <div class="text-center">
+        <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+        <p>{{journaliste.name}}
+        </p>
+      </div>
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer justify-content-center">
+      <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect>Get it now
+        <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
+      </a>
+      <a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">No, thanks</a>
+    </div>
   </div>
+  <!--/.Content-->
 </div>
-<!-- Editable table -->

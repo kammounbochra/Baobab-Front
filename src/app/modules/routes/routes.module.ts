@@ -353,8 +353,14 @@ const routes: Routes = [
       {
         path: 'article_details/:idArticle' ,
         component: ArticleDetailsComponent
+      },  {
+        path: 'article_categorie/:idUser' ,
+        component: ArticleCategorieComponent
       }]},
-
+  {
+    path: 'article_categorie/:idUser' ,
+    component: ArticleCategorieComponent
+  },
   { path: 'article_app', component: ArticleAppComponent },
   { path: 'article_supp', component: ArtcileSuppComponent },
 

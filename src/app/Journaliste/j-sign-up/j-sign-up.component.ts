@@ -20,13 +20,15 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
               private journalistService: JournalistService,
               private router: Router,
               private toastrService: ToastService
-              ) {this.dataRemote = completerService.remote('https://raw.githubusercontent.com/oferh/ng2-completer/master/demo/res/data/countries.json?', 'name', 'name');
+              )
+
+  {this.dataRemote = completerService.remote('https://raw.githubusercontent.com/oferh/ng2-completer/master/demo/res/data/countries.json?', 'name', 'name');
   }
 
 
   model: any;
   modell: any;
-  @ViewChild('datenaiss') datenaiss: MDBDatePickerComponent;
+  @ViewChild('dateNaissance') dateNaissance: MDBDatePickerComponent;
   public myDatePickerOptions:   IMyOptions = {
     minYear: 1900,
     maxYear: 2017
@@ -52,7 +54,7 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
   private nationality: string;
   private  numtel: any;
   private  email: any;
-  private dateNaissance : any ;
+//  private dateNaissance : any ;
   journalist: JournalistSignup = new JournalistSignup(this.role );
   // journalist: JournalistSignup = new JournalistSignup(this.username, this.email , this.password, this.nationality, this.numtel, this.dateNaissance);
   @Input() j: JournalistSignup;
@@ -61,7 +63,7 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
 
 
   ngAfterViewInit() {
-    this.datenaiss.addLocale({
+    this.dateNaissance.addLocale({
       de: {
         dayLabels: { su: 'Son', mo: 'Mon', tu: 'Die', we: 'Mit', th: 'Don', fr: 'Fre', sa: 'Sam' },
         dayLabelsFull: { su: 'Sonntag', mo: 'Montag', tu: 'Dienstag', we: 'Mittwoch', th: 'Donnerstag', fr: 'Freitag', sa: 'Samstag' },
@@ -95,7 +97,7 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
           experience: ['', Validators.required],
           name: ['', Validators.required],
          surname: ['', Validators.required],
-          datenaiss: ['', Validators.required],
+          dateNaissance: ['', Validators.required],
           motivationtext: ['', Validators.required],
         });
 
@@ -146,7 +148,7 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
 
   onSubmit() {
     this.submitted = true;
-    this.testForm.reset();
+    this.showWarning();
     // stop here if form is invalid
  /*   if (this.testForm.invalid) {
       this.showWarning();
@@ -156,14 +158,12 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
     }
 
    // alert('SUCCESS!! :-)');
-  signup() {  if (this.testForm.valid) {
+  signup() {
+
   this.journalistService.signUpJ(this.journalist).subscribe( data => {  console.log('aaaaa', data);
   this.journalist = data as JournalistSignup;
     this.showInfo();
     });
-  } else {
-    this.showWarning();
-
 
 
 
@@ -175,6 +175,5 @@ export class JSignUpComponent implements OnInit  , AfterViewInit {
     } else {
       this.showInfo();
     }*/
-  }
-  this.testForm.reset();
+
 }}

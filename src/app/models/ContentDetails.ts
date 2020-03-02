@@ -1,8 +1,8 @@
-import { language } from './Language';
+import {Language} from './Language';
 
 export class ContentDetails {
     id: any;
     content: any;
     titre: any;
-    Language: language;
+    language: Language;
 }

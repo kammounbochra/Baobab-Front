@@ -3,7 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
+  HostListener, OnDestroy,
   OnInit,
   QueryList,
   ViewChild,
@@ -11,10 +11,8 @@ import {
 } from '@angular/core';
 import {MdbTableDirective, MdbTablePaginationComponent} from 'ng-uikit-pro-standard';
 import {JournalistService} from '../../services/journalist.service';
-import {Http} from '@angular/http';
-import {Angular5Csv} from 'angular5-csv/Angular5-csv';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
+import { Router} from '@angular/router';
 import {JournalistSignup} from '../../models/Journalist-signup';
 
 
@@ -23,79 +21,74 @@ import {JournalistSignup} from '../../models/Journalist-signup';
   templateUrl: './inscrit-app.component.html',
   styleUrls: ['./inscrit-app.component.scss']
 })
-export class InscritAppComponent implements OnInit , AfterViewInit {
-  options = {
-    fieldSeparator: ',',
-    quoteStrings: '"',
-    decimalseparator: '.',
-    showLabels: true,
-    showTitle: true,
-    useBom: true,
-    headers: ['Post ID', 'Post title', 'Post body']
-  };
-
-
-
+export class InscritAppComponent implements OnInit {
+  private text;
+  private text1;
+  private text2;
+  private text3;
   @ViewChildren('list') list: QueryList<ElementRef>;
   @ViewChildren('pages') pages: QueryList<any>;
   @ViewChild(MdbTablePaginationComponent) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective) mdbTable: MdbTableDirective;
 
 
+
   paginators: Array<any> = [];
   activePage = 1;
   firstVisibleIndex = 1;
   lastVisibleIndex = 10;
-  url: any = 'https://jsonplaceholder.typicode.com/posts';
   tableData: Array<any> = [];
   sorted = false;
   searchText: string;
   firstPageNumber = 1;
   lastPageNumber: number;
-  maxVisibleItems = 10;
+  maxVisibleItems = 20;
   elements: any = [];
+
   validatingForm: FormGroup;
   journalistes: Object;
   private editField: string;
   private id: any;
-private role: any ;
+  private role: any;
   journaliste: JournalistSignup = new JournalistSignup(this.role);
   private etat: 'valid';
 
-private a  ;
+  private a;
   private namebt: any;
   private str = 'Valid';
-  constructor(private journalisteService: JournalistService,
-              private fb: FormBuilder , private _router: Router) { }
 
+  jour: any = {};
+  private idUser: number;
+
+
+  constructor(private journalisteService: JournalistService,
+              private fb: FormBuilder, private _router: Router) {
+  }
 
 
   ngOnInit() {
-/*    this.getData().subscribe((next: any) => {
-      next.json().forEach((element: any) => {
-        this.tableData.push({ id: (element.id).toString(), title: element.title, body: element.body });
-      });*/
 
+    this.journalisteService.getEncours().subscribe((next: any) => {
+      next.forEach((element: any) => {
+        this.tableData.push({
+          id: element.id,
+          idUser: element.idUser,
+          name: element.name,
+          surname: element.surname,
+          dateNaissance: element.dateNaissance,
+          numtel: element.numtel,
+          email: element.email,
+          nationality: element.nationality,
+          motivationtext: element.motivationtext,
 
-      this.journalisteService.getEncours().subscribe((next: any) => {
-        next.forEach((element: any) => {
-          this.tableData.push({  id: element.id,
-            idUser: element.idUser,
-            name: element.name ,
-            surname: element.surname ,
-            dateNaissance: element.dateNaissance ,
-            numtel: element.numtel ,
-            email: element.email ,
-            nationality: element.nationality ,
-            motivationtext: element.motivationtext,
-
-          });       console.log(element);  console.log(element.idUser);
-         this.a = Number(element.idUser ) ;
-         console.log('aaa' , this.a);
         });
-
-
+        console.log(element);
+        console.log(element.idUser);
+        this.a = Number(element.idUser);
+        console.log('aaa', this.a);
       });
+
+    });
 
     setTimeout(() => {
       for (let i = 1; i <= this.tableData.length; i++) {
@@ -185,114 +178,35 @@ private a  ;
       return this.filterIt(this.tableData, this.searchText);
     }
   }
-
-  ngAfterViewInit(): void {
-  }
-/*  //remove(id: any) {
-   // this.updateEtat(this.id);
-          this.tableData.push(this.tableData[id]);
-    this.tableData.splice(id, 1);
-  }*/
-
-
   update(idUser: any) {
 
+    let journalist: JournalistSignup;
+    let position = -1;
+    for (let  jr: JournalistSignup of this.tableData) {
+      position++;
+      if (jr.idUser === idUser) {
+        journalist = jr;
+        break;
+      }
+
+    }
+
     this.journalisteService.Update(idUser,
-      {name: this.journaliste.name,
-        status: this.journaliste.status} ).subscribe(data => {
+      {
+        name: journalist.name,
+        status: journalist.status
+      }).subscribe(data => {
       console.log(data);
       this.journaliste = data as JournalistSignup;
-    });
-
-  }
-
-  changeLabelName() {
-    this.namebt = this.str;
-  }
-  addNewRow() {
-    this.mdbTable.addRow({
-      id: this.elements.length.toString(),
-      first: 'Wpis ' + this.elements.length,
-      last: 'Last ' + this.elements.length,
-      handle: 'Handle ' + this.elements.length
-    });
-    this.emitDataSourceChange();
-  }
-
-  addNewRowAfter() {
-    this.mdbTable.addRowAfter(1, {id: '2', first: 'Nowy', last: 'Row', handle: 'Kopytkowy'});
-    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
-      el.id = (index + 1).toString();
-    });
-    this.emitDataSourceChange();
-  }
-
-  removeLastRow() {
-    this.mdbTable.removeLastRow();
-    this.emitDataSourceChange();
-    this.mdbTable.rowRemoved().subscribe((data: any) => {
-      console.log(data);
+      this.tableData.splice(position , 1);
     });
   }
 
-/*
-  removeRow1() {
-    this.mdbTable.removeRow1();
-    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
-      el.id = (index + 1).toString();
-    });
-    this.emitDataSourceChange();
-    this.mdbTable.rowRemoved().subscribe((data: any) => {
-      console.log(data);
-    });
 
-  }*/
-  removeRow2(idUser) {
-    this.mdbTable.removeRow(1);
-    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
-      el.id = (index + 1).toString();
-    });
-    this.emitDataSourceChange();
-    this.mdbTable.rowRemoved().subscribe((data: any) => {
-      console.log(data);
-    });
-
+  showFrame(frame, txt, txt1, txt2) {
+    this.text = txt;
+    this.text1 = txt1;
+    this.text2 = txt2;
+    frame.show();
   }
-
-  remove(id: any) {
-    this.tableData.push(this.tableData[id]);
-    this.tableData.splice(id, 1);
-  }
-
-  emitDataSourceChange() {
-    this.mdbTable.dataSourceChange().subscribe((data: any) => {
-      console.log(data);
-    });
-  }
-
-  removeRow() {
-    this.mdbTable.removeRow(1);
-    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
-      el.id = (index + 1).toString();
-    });
-    this.emitDataSourceChange();
-    this.mdbTable.rowRemoved().subscribe((data: any) => {
-      console.log(data);
-    });
-  }
-
-  add() {
-    if (this.tableData.length > 0) {
-      const person = this.tableData[0];
-      this.tableData.push(person);
-      this.tableData.splice(0, 1);
-    }
-  }
-
-  changeValue(id: number, property: string, event: any) {
-    this.editField = event.target.textContent;
-    this.tableData[id][property] = this.editField;
-  }
-
-
 }

@@ -16,12 +16,14 @@ private article: Article;
 private ContentDetails: ContentDetails;
   constructor(private http: HttpClient) { }
 
-  AddArticle( article: Object , contentDetails: Object): Observable<Object> {
-    return this.http.post(this.baseURL + 'addArticle', Article, contentDetails );
+  AddArticle( article: Object ): Observable<Object> {
+    return this.http.post(this.baseURL + 'AddArticle', article );
   }
+
   DeleteArticle(id: number ): Observable<Object> {
     return this.http.delete(this.baseURL + id);
   }
+
   getAll(): Observable <Object> {
     return this.http.get(this.baseURL);
   }
@@ -68,8 +70,16 @@ private ContentDetails: ContentDetails;
   }
 
 
-
+  getValid() {
+    return this.http.get(`${this.baseURL}validarticle`);
+  }
   getEncours() {
     return this.http.get(`${this.baseURL}PendingArt`);
   }
+  Update(idArticle: number, value: any): Observable<Object> {
+    console.log(typeof idArticle);
+    return this.http.put(`${this.baseURL}changeStatus/${idArticle}`, value , httpOptions);
+  }
+
+
 }

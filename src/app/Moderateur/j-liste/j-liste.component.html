@@ -14,8 +14,8 @@
 
         <!--Card image-->
         <div class="view view-cascade gradient-card-header heavy-rain-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
-          <h4 class="white-text font-weight-bold text-uppercase mb-0">Journalistes</h4>
 
+          <h4 class="white-text font-weight-bold text-uppercase mb-0">Inscription</h4>
 
         </div>
 
@@ -27,9 +27,7 @@
               <label for="search">Search data</label>
             </div>
           </div>
-          <div class="col-md-3 mx-auto">
-            <button class="btn btn-primary waves-light btn-sm" mdbWavesEffect >Generate CSV</button>
-          </div>
+
         </div>
         <div class="px-2">
 
@@ -39,30 +37,31 @@
             <!--Table head-->
             <thead>
             <tr>
-
+              <!-- <th>id
+                 <mdb-icon icon="sort" (click)="sortBy('id')"></mdb-icon>
+               </th>-->
               <th>Name
-                <mdb-icon icon="sort" (click)="sortBy('name')"></mdb-icon>
+                <mdb-icon fas icon="sort" (click)="sortBy('name')"></mdb-icon>
               </th>
               <th>Surname
-                <mdb-icon icon="sort" (click)="sortBy('surname')"></mdb-icon>
+                <mdb-icon fas icon="sort" (click)="sortBy('surname')"></mdb-icon>
               </th>
 
-              <th>Date Naissance
-                <mdb-icon icon="sort" (click)="sortBy('dateNaissance')"></mdb-icon>
+              <th>Naissance<mdb-icon fas icon="sort" (click)="sortBy('dateNaissance')"></mdb-icon>
               </th>
 
 
               <th>Numéro
-                <mdb-icon icon="sort" (click)="sortBy('numtel')"></mdb-icon>
+                <mdb-icon fas icon="sort" (click)="sortBy('numtel')"></mdb-icon>
               </th>
-              <th>Email
-                <mdb-icon icon="sort" (click)="sortBy('email')"></mdb-icon>
-              </th>
+              <!-- <th>Email
+                 <mdb-icon fas icon="sort" (click)="sortBy('email')"></mdb-icon>
+               </th>-->
               <th>Nationality
-                <mdb-icon icon="sort" (click)="sortBy('nationality')"></mdb-icon>
+                <mdb-icon fas icon="sort" (click)="sortBy('nationality')"></mdb-icon>
               </th>
-              <th>motivationtext
-                <mdb-icon icon="sort" (click)="sortBy('motivationtext')"></mdb-icon>
+              <th>Message
+                <mdb-icon fas icon="sort"(click)="sortBy('motivationtext')"></mdb-icon>
               </th>
               <th>Actions
               </th>
@@ -74,22 +73,52 @@
             <tbody>
             <tr #list *ngFor="let data of search(); let i = index">
 
-
+              <!--   <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.id }}</th>
+                 <th *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex" scope="row">{{data.idUser }}</th>-->
               <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.name}}</td>
               <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.surname}} </td>
 
-              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.dateNaissance}} </td>
+              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.dateNaissance | date}} </td>
 
               <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.numtel}} </td>
-              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.email}} </td>
+              <!--
+                            <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.email}} </td>
+              -->
               <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.nationality}} </td>
-              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.motivationtext | slice : 0:55 }} </td>
+              <td *ngIf="i+1 >= firstVisibleIndex && i+1 <= lastVisibleIndex">{{data.motivationtext | slice : 0:50}} </td>
               <td >
                 <span>
-                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" >Détails</button>
-                <button type="button" mdbBtn color="warning" rounded="true" size="sm" class="my-0"  click="/article_details/{{ data.id }}">
-                  Edit
-                </button>
+<!--                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(data.id) ">Accept</button>-->
+                  <!--
+                                  <button type="button" mdbBtn color="green" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="update( data.idUser ) "   mdbWavesEffect><i class="fas fa-check"></i>   </button>
+                  -->
+ <a class="btn-floating  light-green mx-1"  (click)="showFrame(frame, data.motivationtext , data.name , data.surname)">
+          <i class="fas fa-info"> </i>
+        </a>
+
+                  <!--
+                            <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample"   (click)="showFrame(frame, data.motivationtext , data.name , data.surname)"  mdbWavesEffect><i class="fas fa-info"> </i>   </button>
+                  -->
+
+                  <!--                  <button
+                    type="button"
+                    mdbBtn
+                    color="default"
+                    rounded="true"
+                    data-toggle="modal"
+                    data-target="#basicExample"   mdbWavesEffect
+                    (click)="showFrame(frame, data.motivationtext , data.name , data.surname)">-->
+                  <!--
+                    routerLink="/article_categorie/{{data.idUser}}
+                  -->
+
+                  <!--   <button type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0" data-toggle="modal" data-target="#basicExample" (click)="removeRow1()" mdbWavesEffect>2    </button></span>
+                     <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove('data.id')">Remove</button>-->
+                  <!--
+                                  <a class="badge badge-warning" click="/article_details/{{ data.id }}">
+                                    Edit
+                                  </a>-->
+
                 </span>
               </td>
             </tr>
@@ -157,47 +186,50 @@
 
   <hr class="my-5">
 </div>
+
+
+
+
+
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
-  <div class="modal-dialog modal-notify modal-success" role="document">
-    <!--Content-->
+  <!--<div class="modal-dialog modal-notify modal-teal modal-side modal-top-right" role="document">    &lt;!&ndash;Content&ndash;&gt;
     <div class="modal-content">
-      <!--Header-->
+      &lt;!&ndash;Header&ndash;&gt;
       <div class="modal-header">
-        <p class="heading lead">Journaliste</p>
+        <p class="heading lead">{{text1}} {{text2}}</p>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
           <span aria-hidden="true" class="white-text">&times;</span>
         </button>
-      </div>
+      </div>-->
 
+  <div class="modal-dialog modal-side modal-top-right" role="document">
+    <div class="modal-content">
+      <div class="modal-header teal text-center">
+        <h4 class="modal-title w-100 text-white">{{text1 | uppercase}} {{text2 | uppercase}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <!--Body-->
       <div class="modal-body">
         <div class="text-center">
-          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-            in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
 
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-            in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
-
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-            in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+          <p>{{text}}
           </p>
         </div>
       </div>
 
       <!--Footer-->
       <div class="modal-footer justify-content-center">
-        <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect>Get it now
-          <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
-        </a>
-        <a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">No, thanks</a>
+        <!-- <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect>Get it now
+           <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
+         </a>-->
+        <a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">OK</a>
       </div>
     </div>
     <!--/.Content-->
   </div>
 </div>
 
-
-<app-footers> </app-footers>

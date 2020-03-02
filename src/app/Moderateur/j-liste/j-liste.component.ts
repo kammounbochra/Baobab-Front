@@ -23,6 +23,10 @@ export class JListeComponent implements OnInit , AfterViewInit {
   };
 
 
+  private text;
+  private text1;
+  private text2;
+  private text3;
 
   @ViewChildren('list') list: QueryList<ElementRef>;
   @ViewChildren('pages') pages: QueryList<any>;
@@ -34,13 +38,12 @@ export class JListeComponent implements OnInit , AfterViewInit {
   activePage = 1;
   firstVisibleIndex = 1;
   lastVisibleIndex = 10;
-  url: any = 'https://jsonplaceholder.typicode.com/posts';
   tableData: Array<any> = [];
   sorted = false;
   searchText: string;
   firstPageNumber = 1;
   lastPageNumber: number;
-  maxVisibleItems = 10;
+  maxVisibleItems = 20;
   elements: any = [];
   validatingForm: FormGroup;
   journalistes: Object;
@@ -251,6 +254,11 @@ export class JListeComponent implements OnInit , AfterViewInit {
     this.editField = event.target.textContent;
     this.tableData[id][property] = this.editField;
   }
-
+  showFrame(frame, txt , txt1 , txt2) {
+    this.text = txt;
+    this.text1 = txt1;
+    this.text2 = txt2;
+    frame.show();
+  }
 
 }

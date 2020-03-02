@@ -57,37 +57,33 @@
 
 
                   <div class="view overlay rounded z-depth-1-half mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
+                    <img class="img-fluid"  src="../../../assets/img/1.jpg" alt="Sample image">
                     <a>
                       <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
                     </a>
                   </div>
 
-
-                  <div *ngFor="let a of art1" class="news-data d-flex justify-content-between">
+                  <div *ngFor="let a of art1">
+                  <div class="news-data d-flex justify-content-between">
                     <a href="#!" class="deep-orange-text">
                       <h6 class="font-weight-bold">
-                        <i class="fa fa-cutlery pr-2"></i>{{a.contentDetails.titre}}</h6>
+                        <a  routerLink="/auteur/{{a.author.idUser}}">   <i class="fa fa-cutlery pr-2"></i>{{a.author.name | uppercase}} {{a.author.surname | uppercase}}</a></h6>
                     </a>
                     <p class="font-weight-bold dark-grey-text">
-                      <i class="fa fa-clock-o pr-2"></i>{{art1.date}}</p>
+                      <i class="fa fa-clock-o pr-2"></i>{{a.date | date}}</p>
                   </div>
 
 
+                    <div *ngFor="let at of a.contentDetails">
                   <h3 class="font-weight-bold dark-grey-text mb-3">
-                    <a>Title of the news</a>
+                    <a>{{at.titre | uppercase}}</a>
                   </h3>
-                  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">Sed ut perspiciatis unde voluptatem omnis iste natus
-                    error
-                    sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    explicabo.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-
-                  <button type="button" class="btn btn-slack btn-rounded" routerLink="/article_details"><i
+                  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">{{at.content| slice : 0:300 }}</p>
+                    </div>
+                  <button type="button" class="btn btn-slack btn-rounded" routerLink="/article_details/{{a.idArticle}}"><i
                     class="fas fa-angle-double-right"></i> Read More
                   </button>
-
+                  </div>
                 </div>
 
               </div>
@@ -97,7 +93,7 @@
               <div class="col">
 
 
-              <div  *ngFor="let artEnt of artEntreprise ">
+              <div  *ngFor="let artEnt of art4 ">
 
 
                 <div class="single-news mb-4">
@@ -110,7 +106,7 @@
 
 
                       <div class="view overlay rounded z-depth-1 mb-4">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
+                        <img class="img-fluid" src="../../../assets/img/kaspersky.jpg"
                              alt="Sample image">
                         <a>
                           <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
@@ -171,7 +167,7 @@
 
 
                   <div class="view overlay rounded z-depth-1-half mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
+                    <img class="img-fluid" src="../../../assets/img/1.jpg" alt="Sample image">
                     <a>
                       <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
                     </a>
@@ -222,7 +218,7 @@
 
 
                       <div class="view overlay rounded z-depth-1 mb-4">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
+                        <img class="img-fluid" src="../../../assets/img/kaspersky.jpg"
                              alt="Sample image">
                         <a>
                           <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
@@ -283,7 +279,7 @@
 
 
                     <div class="view overlay rounded z-depth-1-half mb-4">
-                      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
+                      <img class="img-fluid" src="../../../assets/img/1.jpg" alt="Sample image">
                       <a>
                         <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
                       </a>
@@ -336,7 +332,7 @@
 
 
                         <div class="view overlay rounded z-depth-1 mb-4">
-                          <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
+                          <img class="img-fluid" src="../../../assets/img/1.jpg"
                                alt="Sample image">
                           <a>
                             <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
@@ -399,7 +395,7 @@
 
 
                   <div class="view overlay rounded z-depth-1-half mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Slides/1.jpg" alt="Sample image">
+                    <img class="img-fluid" src="../../../assets/img/1.jpg" alt="Sample image">
                     <a>
                       <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
                     </a>
@@ -449,7 +445,7 @@
 
 
                       <div class="view overlay rounded z-depth-1 mb-4">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg"
+                        <img class="img-fluid" src="../../../assets/img/1.jpg"
                              alt="Sample image">
                         <a>
                           <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>

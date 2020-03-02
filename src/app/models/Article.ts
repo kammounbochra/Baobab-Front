@@ -5,6 +5,7 @@ import {Tags} from './Tags';
 import {Category} from './Category';
 import {ArticleTags} from './Article_tags';
 import {ArticleContent} from './Article_content';
+import {ArticleCountry} from './ArtcileCountry';
 
 export class Article {
   idArticle: any;
@@ -13,10 +14,10 @@ export class Article {
     author: JournalistSignup;
     link: string;
     status: any;
-    countries: Country;
-  tags: ArticleTags;
-  articletags : ArticleTags;
-  categories : Category ;
+  articleCountry: ArticleCountry;
+  tags: Tags;
+  articletags: ArticleTags;
+  categories: Category ;
   articleContent: ArticleContent;
 
 }

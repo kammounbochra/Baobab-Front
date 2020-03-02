@@ -3,7 +3,6 @@
 
 <div class="container">
 
-  <hr class="my-5">
 
   <!-- Magazine newsfeed v.2 -->
   <div class="row">
@@ -18,62 +17,105 @@
         </mdb-card-header>
         <mdb-card-body class="px-lg-5 pt-0">
 
-          <form #f="ngForm">
+          <form>
+            ​
 
-          <div class="md-form mt-3">
-<!--
-            <input type="text" id="titre" class="form-control"  mdbInput >
--->
-
-            <input type="text" id="titre" class="form-control" name="titre"   #titre mdbInput>
-
-
-            <label for="titre">Titre</label>
-          </div>
-
-
-
+            ​
+            ​
+            ​
+            ​
             <div class="form-group row">
-              <!-- Material input -->
+              ​
               <label for="country" class="col-sm-2 col-form-label">Pays </label>
               <div class="col-sm-4">
                 <div class="md-form mt-0">
-                    <select class="browser-default custom-select"name="country"  #country name="country"
-                            id="country" [(ngModel)]="countrys">
-                      <option *ngFor="let c of countrys" [ngValue]="c.id">{{c.name }}</option>
-<!--                      <option> fqdfq</option>-->
-                      </select>
+                  <select class="browser-default custom-select" name="country" #country id="country"
+                          [(ngModel)]="article.articleCountry">
+                    <option *ngFor="let c of countrys" [value]="c.name">{{c.name }}</option>
+                  </select>
+                </div>
+              </div>
+              ​
+              <!-- <label for="gouvernerat" class="col-sm-2 col-form-label">Gouvernerats </label>
+              <div class="col-sm-4">
+                <div class="md-form mt-0">
+                  <select  class="browser-default custom-select"   mdbValidate name="gouvernerat" [(ngModel)]="patients.gouvernerats"
+                           #gouvernerat  id="gouvernerat">
+                    <option *ngFor="let gouv of gouvernerats" [value]="gouv.id" >{{gouv.libelle}}
+                    </option>
+                  </select>
+                </div>
+              </div> -->
+              ​
+              ​
+              <label for="tags" class="col-sm-2 col-form-label">Tags </label>
+              <div class="col-sm-4">
+                <div class="md-form mt-0">
+                  <select class="browser-default custom-select" name="tags" #tags  id="tags"
+                          [(ngModel)]="article.tags">
+                    <option *ngFor="let t of tagss" [value]="t.id"> {{t.libelle }}</option>
+                  </select>
+                  ​
                 </div>
               </div>
 
-            <label for="tags" class="col-sm-2 col-form-label">Tags </label>
-            <div class="col-sm-4">
-              <div class="md-form mt-0">
-                    <select class="browser-default custom-select"name="tags"  #tags name="tags"
-                            id="tags">
-                      <option> aaaa</option>
-                      <option> fqdfq</option>
+           <div>
 
-                    </select>
+            <label for="language" class="col-sm-8 col-form-label">language </label>
+              <div class="col-sm-4">
+                <div class="md-form mt-0">
+                  <select class="browser-default custom-select" name="language" #language name="language" id="language"   [(ngModel)]="cd.language"
+                          >
 
-                  </div>
+                    <option  *ngFor="let Lg of languages" [value]="Lg">{{Lg}}</option>
+                  </select>
+                  ​
+                </div>
               </div>
+
+
+              <div class="md-form mt-3">
+                ​
+                <div>
+                  <label for="titre">Titre</label>
+                </div>
+                <input type="text" id="titre" class="form-control" name="titre"  [(ngModel)]="cd.titre"
+                >
+                ​
+              </div>
+
+           </div>
+
             </div>
 
+            <label for="language" class="col-sm-2 col-form-label">Catef </label>
+            <div class="col-sm-4">
+              <div class="md-form mt-0">
+                <select class="browser-default custom-select"  [(ngModel)]="article.categories" name="categories"  id="categories"
+                >
 
+                  <option  *ngFor="let cat of categories"   [value]="cat.id">{{cat.id}} {{cat.name}}</option>
+                </select>
+                ​
+              </div>
+            </div>
+          <!--  <label  class="col-sm-2 col-form-label">Category:</label>
+            <div >
+              <label>
+                <input type ="checkbox" [(ngModel)]="article.categories" name="categories"  id="categories">
+                <mdb-checkbox  *ngFor="let cat of categories"  [inline]="true" [value]="cat.id" >{{cat.name}}</mdb-checkbox>
+              </label>
+            </div>-->
 
-                    <div id="quill">
-            <h2>Redact article</h2>
-            <quill-editor [(ngModel)]="editorContent"
-                          [(ngModeloptions]="editorOptions" [ngModelOptions]="{standalone: true}"
-                          (blur)="onEditorBlured($event)"
-                          (focus)="onEditorFocused($event)"
-                          (ready)="onEditorCreated($event)"
-                          (change)="onContentChanged($event)"></quill-editor>
-            {{editorContent}}
-          </div>
-
-
+  <!--          <div id="quill">
+              <h2>Redact article</h2>
+              <quill-editor [(ngModel)]="contentdetails.content" [(ngModeloptions]="editorOptions"
+                            [ngModelOptions]="{standalone: true}" (blur)="onEditorBlured($event)" (focus)="onEditorFocused($event)"
+                            (ready)="onEditorCreated($event)" (change)="onContentChanged($event)"></quill-editor>
+              {{editorContent}}
+            </div>-->
+            ​
+            <button (click)="addArticle()"> Post <mdb-icon fas icon="paper-plane"> </mdb-icon> </button>
           </form>
                   </mdb-card-body>
           </mdb-card>

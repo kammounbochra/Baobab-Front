@@ -196,7 +196,7 @@
 
                  <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input  type="text" class="form-control"  formControlName="password" placeholder="password"      [(ngModel)]="journalist.password"
+                      <input  type="password" class="form-control"  formControlName="password" placeholder="password"      [(ngModel)]="journalist.password"
                              id="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                       <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">Password is required</div>
@@ -221,7 +221,7 @@
 
                    <div class="col-md-6">
                      <div class="md-form mb-0">
-                     <mdb-date-picker formControlName="datenaiss" #datenaiss [options]="myDatePickerOptions" [placeholder]="'Date Naissance'" [locale]="'de'" [(ngModel)]="journalist.datenaiss" required></mdb-date-picker>
+                     <mdb-date-picker formControlName="datenaiss" #datenaiss [options]="myDatePickerOptions" [placeholder]="'Date Naissance'" [locale]="'de'" [(ngModel)]="journalist.dateNaissance" required></mdb-date-picker>
                    </div>
                    </div>
 

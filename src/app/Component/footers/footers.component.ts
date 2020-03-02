@@ -3,9 +3,12 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {JournalistLogin} from '../../models/Journalist-login';
 import {Observable} from 'rxjs';
 import {JournalistService} from '../../services/journalist.service';
-import {CompleterData, IMyOptions, MDBDatePickerComponent, ToastService} from 'ng-uikit-pro-standard';
+import {CompleterData, CompleterService, IMyOptions, MDBDatePickerComponent, ToastService} from 'ng-uikit-pro-standard';
 import {Router} from '@angular/router';
 import {JournalistSignup} from '../../models/Journalist-signup';
+import {ModerateurService} from '../../services/moderateur.service';
+import {TokenStorageService} from '../../Auth/token-storage.service';
+import {ModeratorLogin} from '../../models/Moderator-login';
 
 @Component({
   selector: 'app-footers',
@@ -23,15 +26,16 @@ export class FootersComponent implements OnInit , AfterViewInit {
   private password : string;
   private nationality: string;
   private  numtel : string;
-  private  dateNaissance: Date;
+ // private  dateNaissance: Date;
   testForm: FormGroup;
   private role: any;
   model: any;
   modell: any;
-  @ViewChild('datenaiss') datenaiss: MDBDatePickerComponent;
+
+  @ViewChild('dateNaissance') dateNaissance: MDBDatePickerComponent;
   public myDatePickerOptions:   IMyOptions = {
     minYear: 1900,
-    maxYear: 2017
+    maxYear: 2020
   };
 
 
@@ -45,8 +49,16 @@ export class FootersComponent implements OnInit , AfterViewInit {
 
 
 
+  testForm2: FormGroup;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  roles: string[] = [];
+  errorMessage = '';
+  moderator: ModeratorLogin = new ModeratorLogin();
+  @Input() m: ModeratorLogin;
+
   ngAfterViewInit() {
-    this.datenaiss.addLocale({
+    this.dateNaissance.addLocale({
       de: {
         dayLabels: { su: 'Son', mo: 'Mon', tu: 'Die', we: 'Mit', th: 'Don', fr: 'Fre', sa: 'Sam' },
         dayLabelsFull: { su: 'Sonntag', mo: 'Montag', tu: 'Dienstag', we: 'Mittwoch', th: 'Donnerstag', fr: 'Freitag', sa: 'Samstag' },
@@ -67,12 +79,14 @@ export class FootersComponent implements OnInit , AfterViewInit {
       }
     });
   }
-  constructor(private fb: FormBuilder,
+  constructor(private fb: FormBuilder, public completerService: CompleterService,
               private journalistService: JournalistService, private toastrService: ToastService,
-              private router: Router) {
+              private router: Router,  private moderateurService: ModerateurService,
+             private tokenStorage: TokenStorageService) {
+    this.dataRemote = completerService.remote('https://raw.githubusercontent.com/oferh/ng2-completer/master/demo/res/data/countries.json?', 'name', 'name');
   }
 
-  ngOnInit() {
+      ngOnInit() {
     this.testlog = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -90,8 +104,13 @@ export class FootersComponent implements OnInit , AfterViewInit {
       experience: ['', Validators.required],
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      datenaiss: ['', Validators.required],
+      dateNaissance: ['', Validators.required],
       motivationtext: ['', Validators.required],
+    });
+
+    this.testForm2 = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
   showInfo() {
@@ -108,23 +127,52 @@ export class FootersComponent implements OnInit , AfterViewInit {
 
   onSubmit() {
     this.submitted = true;
+    this.showWarning();
   }
   signin() {
     if (this.testlog.valid) {
       this.journalistService.signInJournalist(this.journaliste);
+      this.router.navigate(['redaction']);
     }
   }
 
   get f() {
     return this.testForm.controls;
   }
-  signup() {  if (this.testForm.valid) { this.journalistService.signUpJ(this.journalist).subscribe( data => {  console.log('aaaaa', data);
-    this.journalist = data as JournalistSignup;
-    this.showInfo();
-  });
-  } else {
-    this.showWarning();
+  signup() {
+
+    this.journalistService.signUpJ(this.journalist).subscribe(data => {
+      console.log('aaaaa', data);
+      this.journalist = data as JournalistSignup;
+      this.showInfo();
+    });
   }
-    this.testForm.reset();
+
+
+  get f2() {
+    return this.testForm2.controls;
+  }
+  signinM() {
+   if (this.testForm2.valid) {
+      this.moderateurService.signInModerator(this.moderator).subscribe(
+        data => {
+          this.tokenStorage.saveToken(data.accessToken);
+          this.tokenStorage.saveUsername(data.username);
+          this.tokenStorage.saveAuthorities(data.authorities);
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.roles = this.tokenStorage.getAuthorities();
+          this.router.navigate(['inscrit_app']);
+        },
+        error => { this.showWarning(); }
+       /* error => {
+          console.log(error);
+
+          this.errorMessage = error.error.message;
+          this.isLoginFailed = true;
+          alert('identifiant ou mot de passe incorrect !!!');
+        }*/
+      );
+    }
   }
 }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Country} from '../models/Country';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 const httpOptions =
   { headers: new HttpHeaders ({'ContentType' : 'application/json'}) };
@@ -37,7 +39,9 @@ export class CountryService {
     return this.http.get<Country[]>(`${this.baseUrl}` , httpOptions);
   }
 
-
+  getCountry(id: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}${id}`, httpOptions ).pipe ( map (coun => coun));
+  }
  /* deleteAll(): Observable<any> {
     return this.http.delete(`${this.baseUrl}` + `/delete`, { responseType: 'text' });
   }*/}
